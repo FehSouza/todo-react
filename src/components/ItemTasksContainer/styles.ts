@@ -1,14 +1,15 @@
-import { lighten } from 'polished'
 import styled from 'styled-components'
 
 export const Container = styled.li`
-  width: 100%;
-  height: 2.5rem;
+  width: calc(100% - 4px);
+  height: 3.125rem;
   background-color: ${({ theme }) => theme.colors.white};
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   display: flex;
   align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
   transition-duration: 350ms;
 
   & + li {
@@ -16,12 +17,11 @@ export const Container = styled.li`
   }
 
   &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => lighten(0.5, theme.colors.themeBlue)};
+    background-color: ${({ theme }) => theme.colors.focus};
   }
 
   &:focus {
-    background-color: ${({ theme }) => lighten(0.5, theme.colors.themeBlue)};
+    background-color: ${({ theme }) => theme.colors.focus};
   }
 `
 
@@ -31,10 +31,14 @@ export const Dot = styled.div`
   border: none;
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors.themeBlue};
-  margin-left: 1rem;
   margin-right: 0.625rem;
 `
 
-export const Text = styled.span`
+export const Task = styled.span`
   color: ${({ theme }) => theme.colors.text};
+`
+
+export const NameList = styled.span`
+  color: ${({ theme }) => theme.colors.textLight};
+  margin-left: auto;
 `

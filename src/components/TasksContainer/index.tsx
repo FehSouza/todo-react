@@ -1,35 +1,41 @@
-import { FiSearch } from 'react-icons/fi'
-import { BsPlusLg } from 'react-icons/bs'
+import { ItemTasksContainer } from '../ItemTasksContainer'
+import { SearchContainer } from '../SearchContainer'
+import { ListProps } from '../ToDoListContainer'
 import * as S from './styles'
 
-export const TasksContainer = () => {
+type TasksContainerProps = {
+  list: ListProps
+}
+
+export const TasksContainer = ({ list }: TasksContainerProps) => {
   return (
     <S.Container>
-      <S.Title>All</S.Title>
+      <S.Title>{list.name}</S.Title>
 
-      <S.SearchContainer>
-        <S.SearchWrapper>
-          <FiSearch />
-          <S.SearchInput placeholder="Digite sua pesquisa aqui…"></S.SearchInput>
-        </S.SearchWrapper>
-        <S.ButtonAdd>
-          <BsPlusLg />
-        </S.ButtonAdd>
-      </S.SearchContainer>
+      <SearchContainer />
 
-      <S.ListOfTasks>
-        <S.ItemOfListWrapper>
-          <S.Dots />
-          <S.Task>Placeholder</S.Task>
-          <S.NameList>Work</S.NameList>
-        </S.ItemOfListWrapper>
-
-        <S.ItemOfListWrapper>
-          <S.Dots />
-          <S.Task>Placeholder</S.Task>
-          <S.NameList>Home</S.NameList>
-        </S.ItemOfListWrapper>
-      </S.ListOfTasks>
+      <S.TasksContent>
+        <ItemTasksContainer task="Placeholder" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Teste" nameList="Work" />
+      </S.TasksContent>
     </S.Container>
   )
 }

@@ -12,7 +12,7 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.text};
 `
 
-export const ListOfLists = styled.ul`
+export const ListsContent = styled.ul`
   width: 100%;
   height: 100%;
   margin-top: 1rem;

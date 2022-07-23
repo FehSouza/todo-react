@@ -12,9 +12,13 @@ const baseTheme = {
     themeOrange: '#EF8100',
     themeYellow: '#EFCA00',
     themeGreen: '#00EFA5',
-    shadow: '#0000001A'
+    shadow: '#0000001A',
   },
-}
+} as const
+
+export type Colors = typeof baseTheme.colors
+
+export type Color = keyof Colors
 
 export const theme = {
   base: baseTheme,

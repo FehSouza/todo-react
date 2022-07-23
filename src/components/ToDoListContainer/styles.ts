@@ -9,5 +9,5 @@ export const Container = styled.section`
   box-shadow: 0 0 0.375rem ${({ theme }) => theme.colors.shadow};
   padding: 1rem;
   box-sizing: border-box;
-  display: flex; 
+  display: flex;
 `
