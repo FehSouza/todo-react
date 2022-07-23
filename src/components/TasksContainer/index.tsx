@@ -1,39 +1,23 @@
 import { ItemTasksContainer } from '../ItemTasksContainer'
 import { SearchContainer } from '../SearchContainer'
-import { ListProps } from '../ToDoListContainer'
+import { ListsProps } from '../ToDoListContainer'
 import * as S from './styles'
 
 type TasksContainerProps = {
-  list: ListProps
+  listSelected: ListsProps
 }
 
-export const TasksContainer = ({ list }: TasksContainerProps) => {
+export const TasksContainer = ({ listSelected }: TasksContainerProps) => {
   return (
     <S.Container>
-      <S.Title>{list.name}</S.Title>
+      <S.Title>{listSelected.name}</S.Title>
 
       <SearchContainer />
 
       <S.TasksContent>
         <ItemTasksContainer task="Placeholder" nameList="Work" />
         <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
-        <ItemTasksContainer task="Teste" nameList="Work" />
+        <ItemTasksContainer task="Placeholder" nameList="Work" />
         <ItemTasksContainer task="Teste" nameList="Work" />
       </S.TasksContent>
     </S.Container>

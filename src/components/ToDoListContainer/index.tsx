@@ -4,13 +4,13 @@ import { ListsContainer } from '../ListsContainer'
 import { TasksContainer } from '../TasksContainer'
 import * as S from './styles'
 
-export interface ListProps {
+export interface ListsProps {
   name: string
   id: number
   color: Color
 }
 
-let mock: ListProps[] = [
+let MOCK_LISTS: ListsProps[] = [
   { name: 'All', id: 1, color: 'themeBlue' },
   { name: 'Home', id: 2, color: 'themeGreen' },
   { name: 'Food', id: 3, color: 'themePink' },
@@ -18,14 +18,13 @@ let mock: ListProps[] = [
 ]
 
 export const ToDoListContainer = () => {
-  const [lists, setLists] = useState(mock)
-
-  const [selected, setSelected] = useState(lists[0])
+  const [lists, setLists] = useState(MOCK_LISTS)
+  const [listSelected, setListSelected] = useState(lists[0])
 
   return (
     <S.Container>
-      <ListsContainer lists={lists} selected={selected} setSelected={setSelected} />
-      <TasksContainer list={selected} />
+      <ListsContainer lists={lists} listSelected={listSelected} setListSelected={setListSelected} />
+      <TasksContainer listSelected={listSelected} />
     </S.Container>
   )
 }

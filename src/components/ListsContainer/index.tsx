@@ -1,17 +1,15 @@
-import { Dispatch, SetStateAction, useState } from 'react'
 import { BsPlusLg } from 'react-icons/bs'
-import { Color } from '../../styles/theme'
 import { ItemListsContainer } from '../ItemListsContainer'
-import { ListProps } from '../ToDoListContainer'
+import { ListsProps } from '../ToDoListContainer'
 import * as S from './styles'
 
 type ListsContainerProps = {
-  lists: ListProps[]
-  selected: ListProps
-  setSelected: (list: ListProps) => void
+  lists: ListsProps[]
+  listSelected: ListsProps
+  setListSelected: (list: ListsProps) => void
 }
 
-export const ListsContainer = ({ lists, selected, setSelected }: ListsContainerProps) => {
+export const ListsContainer = ({ lists, listSelected, setListSelected }: ListsContainerProps) => {
   return (
     <S.Container>
       <S.Title>Lists</S.Title>
@@ -23,8 +21,8 @@ export const ListsContainer = ({ lists, selected, setSelected }: ListsContainerP
               key={list.id}
               text={list.name}
               color={list.color}
-              state={selected.id === list.id}
-              selectList={() => setSelected(list)}
+              state={listSelected.id === list.id}
+              selectList={() => setListSelected(list)}
             />
           )
         })}
