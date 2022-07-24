@@ -6,13 +6,14 @@ type ItemListsContainerProps = {
   color: Color
   state: boolean
   selectList: () => void
+  showList: boolean
 }
 
-export const ItemListsContainer = ({ text, color, state, selectList }: ItemListsContainerProps) => {
+export const ItemListsContainer = ({ text, color, state, selectList, showList }: ItemListsContainerProps) => {
   return (
     <S.Container onClick={selectList} color={color} state={state}>
       <S.Dot />
-      <S.NameList>{text}</S.NameList>
+      {showList && <S.NameList>{text}</S.NameList>}
     </S.Container>
   )
 }

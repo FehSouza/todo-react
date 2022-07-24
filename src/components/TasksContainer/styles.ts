@@ -2,9 +2,9 @@ import { lighten } from 'polished'
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 75%;
+  flex: 1;
   height: 100%;
-  padding-left: 1rem;
+  padding-left: 1.5rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
