@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Color } from '../../styles/theme'
 
 export const Container = styled.li`
   width: calc(100% - 4px);
@@ -25,12 +26,12 @@ export const Container = styled.li`
   }
 `
 
-export const Dot = styled.div`
+export const Dot = styled.div<{ color: Color }>`
   width: 0.625rem;
   height: 0.625rem;
   border: none;
   border-radius: 100%;
-  background-color: ${({ theme }) => theme.colors.themeBlue};
+  background-color: ${({ theme, color }) => theme.colors[color]};
   margin-right: 0.625rem;
 `
 

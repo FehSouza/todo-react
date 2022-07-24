@@ -1,5 +1,6 @@
 import { lighten } from 'polished'
 import styled from 'styled-components'
+import { Color } from '../../styles/theme'
 
 export const Container = styled.div`
   display: flex;
@@ -38,10 +39,10 @@ export const SearchInput = styled.input`
   }
 `
 
-export const ButtonAdd = styled.button`
+export const ButtonAdd = styled.button<{ color: Color }>`
   width: 2.5rem;
   height: 2.5rem;
-  background-color: ${({ theme }) => theme.colors.themeBlue};
+  background-color: ${({ theme, color }) => theme.colors[color]};
   border: none;
   border-radius: 0.5rem;
   transition-duration: 350ms;
@@ -55,7 +56,7 @@ export const ButtonAdd = styled.button`
   }
 
   &:hover {
-    background-color: ${({ theme }) => lighten(0.06, theme.colors.themeBlue)};
+    background-color: ${({ theme, color }) => lighten(0.06, theme.colors[color])};
 
     & svg {
       transform: rotate(180deg);
