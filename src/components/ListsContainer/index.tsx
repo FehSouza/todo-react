@@ -7,7 +7,7 @@ import * as S from './styles'
 
 type ListsContainerProps = {
   lists: ListsProps[]
-  listSelected: ListsProps
+  listSelected?: ListsProps
   setListSelected: (list: ListsProps) => void
 }
 
@@ -23,20 +23,20 @@ export const ListsContainer = ({ lists, listSelected, setListSelected }: ListsCo
         <S.ButtonToggle onClick={handleToggleList}>{showList && <RiMenuFoldLine />}</S.ButtonToggle>
       </S.ContainerTitle>
 
-      <S.ListsContent>
-        {lists.map((list) => {
-          return (
+      {lists.length !== 0 && (
+        <S.ListsContent>
+          {lists.map((list) => (
             <ItemListsContainer
               key={list.id}
               text={list.name}
               color={list.color}
-              state={listSelected.id === list.id}
+              state={listSelected?.id === list.id}
               selectList={() => setListSelected(list)}
               showList={showList}
             />
-          )
-        })}
-      </S.ListsContent>
+          ))}
+        </S.ListsContent>
+      )}
 
       <S.ButtonAddList>
         <BsPlusLg />

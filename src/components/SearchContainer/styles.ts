@@ -39,10 +39,10 @@ export const SearchInput = styled.input`
   }
 `
 
-export const ButtonAdd = styled.button<{ color: Color }>`
+export const ButtonAdd = styled.button<{ color?: Color }>`
   width: 2.5rem;
   height: 2.5rem;
-  background-color: ${({ theme, color }) => theme.colors[color]};
+  background-color: ${({ theme, color }) => theme.colors[color ?? 'textLight']};
   border: none;
   border-radius: 0.5rem;
   transition-duration: 350ms;
@@ -56,7 +56,7 @@ export const ButtonAdd = styled.button<{ color: Color }>`
   }
 
   &:hover {
-    background-color: ${({ theme, color }) => lighten(0.06, theme.colors[color])};
+    background-color: ${({ theme, color }) => lighten(0.06, theme.colors[color ?? 'textLight'])};
 
     & svg {
       transform: rotate(180deg);

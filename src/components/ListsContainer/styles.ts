@@ -1,7 +1,8 @@
+import { lighten } from 'polished'
 import styled from 'styled-components'
 
 export const Container = styled.div<{ showList: boolean }>`
-  width: ${({ showList }) => (showList ? '25%' : '2.625rem')};
+  width: ${({ showList }) => (showList ? '25%' : '3.625rem')};
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -47,8 +48,31 @@ export const ButtonToggle = styled.button`
 
 export const ListsContent = styled.ul`
   width: 100%;
-  height: 100%;
+  height: calc(100% - 5.0625rem);
+  overflow-y: auto;
   margin-top: 1rem;
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background-color: ${({ theme }) => lighten(-0.04, theme.colors.focus)};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: ${({ theme }) => theme.colors.textLight};
+    border: 3.5px solid ${({ theme }) => lighten(-0.04, theme.colors.focus)};
+  }
+`
+
+export const WithoutItemListsContainer = styled.span`
+  width: 100%;
+  text-align: center;
+  color: #111725;
+  line-height: 1rem;
 `
 
 export const ButtonAddList = styled.button`

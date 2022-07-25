@@ -4,7 +4,7 @@ import { ListsProps } from '../ToDoListContainer'
 import * as S from './styles'
 
 type SearchContainerProps = {
-  listSelected: ListsProps
+  listSelected?: ListsProps
 }
 
 export const SearchContainer = ({ listSelected }: SearchContainerProps) => {
@@ -12,10 +12,10 @@ export const SearchContainer = ({ listSelected }: SearchContainerProps) => {
     <S.Container>
       <S.SearchWrapper>
         <FiSearch />
-        <S.SearchInput placeholder="Digite sua pesquisa aqui…"></S.SearchInput>
+        <S.SearchInput placeholder="Enter your search here…"></S.SearchInput>
       </S.SearchWrapper>
 
-      <S.ButtonAdd color={listSelected.color}>
+      <S.ButtonAdd color={listSelected?.color}>
         <BsPlusLg />
       </S.ButtonAdd>
     </S.Container>

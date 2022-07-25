@@ -12,7 +12,7 @@ export const Dot = styled.div`
 `
 
 export const Container = styled.li<{ color: Color; state?: boolean }>`
-  width: 100%;
+  width: calc(100% - 0.25rem);
   height: 2.5rem;
   background-color: ${({ theme, state, color }) => (state ? lighten(0.5, theme.colors[color]) : theme.colors.white)};
   border: none;
@@ -32,7 +32,7 @@ export const Container = styled.li<{ color: Color; state?: boolean }>`
 
   &:hover {
     cursor: pointer;
-    background-color: ${({ theme, color }) => lighten(0.5, theme.colors[color])};
+    background-color: ${({ theme, color }) => lighten(0.45, theme.colors[color])};
     color: ${({ theme, color }) => theme.colors[color]};
   }
 

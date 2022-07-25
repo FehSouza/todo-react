@@ -12,6 +12,7 @@ const baseTheme = {
     themeOrange: '#EF8100',
     themeYellow: '#EFCA00',
     themeGreen: '#00EFA5',
+    themeRed: '#FF0000',
     shadow: '#0000001A',
   },
 } as const

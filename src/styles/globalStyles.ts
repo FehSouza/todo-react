@@ -56,4 +56,16 @@ export const GlobalStyles = css`
     width: 100%;
     height: 100%;
   }
+
+  @media (max-width: 1024px) {
+    html {
+      font-size: 93.75%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 87.5%;
+    }
+  }
 `
