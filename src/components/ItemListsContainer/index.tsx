@@ -11,7 +11,7 @@ type ItemListsContainerProps = {
 
 export const ItemListsContainer = ({ text, color, state, selectList, showList }: ItemListsContainerProps) => {
   return (
-    <S.Container onClick={selectList} color={color} state={state}>
+    <S.Container showList={showList} onClick={selectList} color={color} state={state}>
       <S.Dot />
       {showList && <S.NameList>{text}</S.NameList>}
     </S.Container>

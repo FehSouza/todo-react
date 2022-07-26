@@ -11,8 +11,8 @@ export const Dot = styled.div`
   margin-right: 0.625rem;
 `
 
-export const Container = styled.li<{ color: Color; state?: boolean }>`
-  width: calc(100% - 0.25rem);
+export const Container = styled.li<{ color: Color; state?: boolean; showList?: boolean }>`
+  width: ${({ showList }) => (showList ? 'calc(100% - 0.25rem)' : '2.625rem')};
   height: 2.5rem;
   background-color: ${({ theme, state, color }) => (state ? lighten(0.5, theme.colors[color]) : theme.colors.white)};
   border: none;
