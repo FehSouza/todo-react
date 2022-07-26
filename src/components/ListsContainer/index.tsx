@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Dispatch, useState } from 'react'
 import { BsPlusLg } from 'react-icons/bs'
 import { RiMenuFoldLine } from 'react-icons/ri'
 import { ItemListsContainer } from '../ItemListsContainer'
@@ -9,12 +9,15 @@ type ListsContainerProps = {
   lists: ListsProps[]
   listSelected?: ListsProps
   setListSelected: (list: ListsProps) => void
+  setModalAddListIsOpen: Dispatch<React.SetStateAction<boolean>>
 }
 
-export const ListsContainer = ({ lists, listSelected, setListSelected }: ListsContainerProps) => {
+export const ListsContainer = ({ lists, listSelected, setListSelected, setModalAddListIsOpen }: ListsContainerProps) => {
   const [showList, setShowList] = useState(true)
 
   const handleToggleList = () => setShowList(!showList)
+
+  const teste = () => setModalAddListIsOpen(true)
 
   return (
     <S.Container showList={showList}>
@@ -38,7 +41,9 @@ export const ListsContainer = ({ lists, listSelected, setListSelected }: ListsCo
         </S.ListsContent>
       )}
 
-      <S.ButtonAddList>
+
+
+      <S.ButtonAddList onClick={teste}>
         <BsPlusLg />
         {showList && 'Add list'}
       </S.ButtonAddList>
