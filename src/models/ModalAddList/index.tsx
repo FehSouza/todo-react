@@ -1,17 +1,34 @@
+import { Dispatch } from 'react'
+import { FiSave } from 'react-icons/fi'
+import { TbLetterT } from 'react-icons/tb'
+import { InputAndButton } from '../../components'
 import * as S from './styles'
-import Modal from 'react-modal'
 
-type ModalAddListProps = {
+interface ModalAddListProps {
   isOpen: boolean
-  onRequestClose: (event: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>) => void
+  showList: boolean
+  setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
 }
 
-Modal.setAppElement('#root')
+export const ModalAddList = ({ isOpen, setModalAddListOpen, showList }: ModalAddListProps) => {
+  const handleCloseModal = () => setModalAddListOpen(false)
 
-export const ModalAddList = ({ isOpen, onRequestClose }: ModalAddListProps) => {
   return (
-    <Modal isOpen={isOpen} onRequestClose={onRequestClose} overlayClassName="container-modal" className="content-modal">
-      <span>TESTE</span>
-    </Modal>
+    <S.Modal isOpen={isOpen} onClick={handleCloseModal}>
+      <S.Content showList={showList} onClick={(e) => e.stopPropagation()}>
+        <S.Title>List title</S.Title>
+
+        <InputAndButton
+          inputIconLeft={TbLetterT}
+          inputPlaceholder="Enter your title here..."
+          color={'themeBlue'}
+          buttonIconLeft={FiSave}
+        />
+
+        <S.ThemesWrapper>
+          <S.Theme></S.Theme>
+        </S.ThemesWrapper>
+      </S.Content>
+    </S.Modal>
   )
 }

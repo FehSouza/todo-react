@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin-top: 1rem;
 `
 
-export const SearchWrapper = styled.div`
+export const InputWrapper = styled.div<{ color?: Color; size?: number }>`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.focus};
   border: 1px solid ${({ theme }) => theme.colors.focus};
@@ -18,15 +18,16 @@ export const SearchWrapper = styled.div`
   & svg {
     padding-left: 1rem;
     color: ${({ theme }) => theme.colors.textLight};
-    font-size: 1.25rem;
+    font-size: ${({ size }) => (size ? `${size}rem` : '1rem')};
+    font-weight: 600;
   }
 
   &:focus-within {
-    border: 1px solid ${({ theme }) => theme.colors.themeBlue};
+    border: 1px solid ${({ theme, color }) => theme.colors[color ?? 'text']};
   }
 `
 
-export const SearchInput = styled.input`
+export const Input = styled.input`
   width: 100%;
   height: 100%;
   outline: none;
@@ -39,28 +40,31 @@ export const SearchInput = styled.input`
   }
 `
 
-export const ButtonAdd = styled.button<{ color?: Color }>`
+export const Button = styled.button<{ color?: Color; size?: number }>`
   width: 2.5rem;
   height: 2.5rem;
   background-color: ${({ theme, color }) => theme.colors[color ?? 'textLight']};
   border: none;
   border-radius: 0.5rem;
-  transition-duration: 350ms;
+  transition-duration: 1000ms;
   margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   & svg {
-    font-size: 0.75rem;
+    font-size: ${({ size }) => (size ? `${size}rem` : '1rem')};
     color: ${({ theme }) => theme.colors.white};
     transform: rotate(0deg);
-    transition-duration: 350ms;
+    transition-duration: 1000ms;
   }
 
   &:hover {
     background-color: ${({ theme, color }) => lighten(0.06, theme.colors[color ?? 'textLight'])};
 
     & svg {
-      transform: rotate(180deg);
-      transition-duration: 350ms;
+      transform: rotate(360deg);
+      transition-duration: 1000ms;
     }
   }
 `

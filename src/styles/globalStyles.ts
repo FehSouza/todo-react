@@ -14,6 +14,11 @@ export const GlobalStyles = css`
     height: 100vh;
   }
 
+  main {
+    z-index: 0;
+    background-color: ${({ theme }) => theme.colors.background};
+  }
+
   h1,
   h2,
   h3,
@@ -67,29 +72,5 @@ export const GlobalStyles = css`
     html {
       font-size: 87.5%;
     }
-  }
-
-  .container-modal {
-    background-color: transparent;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .content-modal {
-    background-color: ${({ theme }) => theme.colors.white};
-    box-shadow: 0 0 0.5rem ${({ theme }) => theme.colors.shadow};
-    position: fixed;
-    bottom: 0;
-    left: 13.5%;
-    width: calc(50% - 13.5% - 3.7rem);
-    height: 10rem;
-    margin: 2.8rem;
-    padding: 1rem;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 0.5rem;
   }
 `

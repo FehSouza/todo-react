@@ -1,5 +1,7 @@
+import { AiOutlinePlus } from 'react-icons/ai'
+import { FiSearch } from 'react-icons/fi'
+import { InputAndButton } from '../InputAndButton'
 import { ItemTasksContainer } from '../ItemTasksContainer'
-import { SearchContainer } from '../SearchContainer'
 import { ListsProps } from '../ToDoListContainer'
 import { WithoutItemTasksContainer } from '../WithoutItemTasksContainer'
 import * as S from './styles'
@@ -44,7 +46,13 @@ export const TasksContainer = ({ listSelected, lists }: TasksContainerProps) => 
     <S.Container>
       <S.Title>{listSelected?.name ?? valueTitle}</S.Title>
 
-      <SearchContainer listSelected={listSelected} />
+      <InputAndButton
+        inputIconLeft={FiSearch}
+        inputPlaceholder="Enter your search here…"
+        buttonIconRight={AiOutlinePlus}
+        color={listSelected?.color}
+        size={1.125}
+      />
 
       <S.TasksContent>
         {tasks.length === 0 && <WithoutItemTasksContainer />}

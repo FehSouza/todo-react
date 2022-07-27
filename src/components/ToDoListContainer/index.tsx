@@ -3,7 +3,6 @@ import { Color } from '../../styles/theme'
 import { ListsContainer } from '../ListsContainer'
 import { TasksContainer } from '../TasksContainer'
 import * as S from './styles'
-import { ModalAddList } from '../../models/ModalAddList/index'
 
 export interface ListsProps {
   name: string
@@ -11,15 +10,20 @@ export interface ListsProps {
   color: Color
 }
 
-let MOCK_LISTS: ListsProps[] = [{ name: 'All', id: 1, color: 'themeBlue' }]
+interface ToDoListContainerProps {
+  setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
+  showList: boolean
+  setShowList: Dispatch<React.SetStateAction<boolean>>
+}
 
-export const ToDoListContainer = () => {
+let MOCK_LISTS: ListsProps[] = [
+  { name: 'All', id: 1, color: 'themeBlue' },
+  { name: 'Food', id: 2, color: 'themePink' },
+]
+
+export const ToDoListContainer = ({ setModalAddListOpen, showList, setShowList }: ToDoListContainerProps) => {
   const [lists, setLists] = useState<ListsProps[]>([{ name: 'All', id: 1, color: 'themeBlue' }])
   const [listSelected, setListSelected] = useState<ListsProps>({ name: 'All', id: 1, color: 'themeBlue' })
-  const [modalAddListIsOpen, setModalAddListIsOpen] = useState(false)
-
-  const handleModalOpen = (setStateModal: Dispatch<React.SetStateAction<boolean>>) => setStateModal(true)
-  const handleModalClose = (setStateModal: Dispatch<React.SetStateAction<boolean>>) => setStateModal(false)
 
   useEffect(() => {
     setTimeout(setLists, 500, MOCK_LISTS)
@@ -31,10 +35,11 @@ export const ToDoListContainer = () => {
         lists={lists}
         listSelected={listSelected}
         setListSelected={setListSelected}
-        setModalAddListIsOpen={() => handleModalOpen(setModalAddListIsOpen)}
+        showList={showList}
+        setShowList={setShowList}
+        setModalAddListOpen={setModalAddListOpen}
       />
       <TasksContainer listSelected={listSelected} lists={lists} />
-      <ModalAddList isOpen={modalAddListIsOpen} onRequestClose={() => handleModalClose(setModalAddListIsOpen)}/>
     </S.Container>
   )
 }
