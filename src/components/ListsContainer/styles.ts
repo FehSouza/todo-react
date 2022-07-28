@@ -87,6 +87,7 @@ export const ButtonAddList = styled.button`
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
   line-height: 1rem;
+  outline: none;
 
   & svg {
     transform: rotate(0deg);

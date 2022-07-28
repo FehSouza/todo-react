@@ -11,6 +11,7 @@ interface InputAndButtonProps {
   buttonText?: string
   color?: Color
   size?: number
+  marginTop?: number
 }
 
 export const InputAndButton = ({
@@ -22,9 +23,10 @@ export const InputAndButton = ({
   buttonText,
   color,
   size,
+  marginTop,
 }: InputAndButtonProps) => {
   return (
-    <S.Container>
+    <S.Container marginTop={marginTop}>
       <S.InputWrapper color={color} size={size}>
         {InputIconLeft && <InputIconLeft />}
 

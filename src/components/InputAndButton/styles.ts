@@ -2,9 +2,9 @@ import { lighten } from 'polished'
 import styled from 'styled-components'
 import { Color } from '../../styles/theme'
 
-export const Container = styled.div`
+export const Container = styled.div<{ marginTop?: number }>`
   display: flex;
-  margin-top: 1rem;
+  margin-top: ${({ marginTop }) => (marginTop ? `${marginTop}rem` : '1rem')};
 `
 
 export const InputWrapper = styled.div<{ color?: Color; size?: number }>`

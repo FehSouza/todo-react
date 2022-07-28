@@ -1,13 +1,13 @@
 import styled from 'styled-components'
+import { Color } from '../../styles/theme'
 
-export const Modal = styled.div<{ isOpen: boolean }>`
+export const Modal = styled.div`
   background-color: transparent;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: ${({ isOpen }) => (isOpen ? 1 : -1)};
 `
 
 export const Content = styled.div<{ showList: boolean }>`
@@ -26,6 +26,7 @@ export const Content = styled.div<{ showList: boolean }>`
   box-sizing: border-box;
   border: none;
   border-radius: 0.5rem;
+  outline: none;
 `
 
 export const Title = styled.h3`
@@ -34,6 +35,31 @@ export const Title = styled.h3`
   line-height: 1.125rem;
 `
 
-export const ThemesWrapper = styled.ul``
+export const ThemesWrapper = styled.ul`
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+`
 
-export const Theme = styled.li``
+export const Theme = styled.li<{ colorTheme: Color; colorThemeSelected: boolean }>`
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 100%;
+  border: 0.125rem solid
+    ${({ theme, colorTheme, colorThemeSelected }) =>
+      colorThemeSelected ? theme.colors[colorTheme] : theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
+  margin-right: 0.5rem;
+`
+
+export const ThemeInternal = styled.div<{ colorTheme: Color }>`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  border: 0.125rem solid ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, colorTheme }) => (colorTheme ? theme.colors[colorTheme] : theme.colors.themeBlue)};
+
+  &:hover {
+    cursor: pointer;
+  }
+`
