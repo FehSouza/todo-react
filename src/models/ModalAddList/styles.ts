@@ -27,6 +27,14 @@ export const Content = styled.div<{ showList: boolean }>`
   border: none;
   border-radius: 0.5rem;
   outline: none;
+
+  @media (max-width: 1162px) {
+    height: ${({ showList }) => (showList ? '13rem' : '10rem')};
+  }
+
+  @media (max-width: 941px) {
+    height: 13rem;
+  }
 `
 
 export const Title = styled.h3`
@@ -39,6 +47,11 @@ export const ThemesWrapper = styled.ul`
   width: 100%;
   margin-top: 1rem;
   display: flex;
+  gap: 0.5rem;
+
+  @media (max-width: 1162px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const Theme = styled.li<{ colorTheme: Color; colorThemeSelected: boolean }>`
@@ -49,7 +62,6 @@ export const Theme = styled.li<{ colorTheme: Color; colorThemeSelected: boolean 
     ${({ theme, colorTheme, colorThemeSelected }) =>
       colorThemeSelected ? theme.colors[colorTheme] : theme.colors.white};
   background-color: ${({ theme }) => theme.colors.white};
-  margin-right: 0.5rem;
 `
 
 export const ThemeInternal = styled.div<{ colorTheme: Color }>`
