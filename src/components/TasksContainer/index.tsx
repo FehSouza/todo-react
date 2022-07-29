@@ -8,7 +8,7 @@ import * as S from './styles'
 
 type TasksContainerProps = {
   listSelected?: ListsProps
-  lists?: ListsProps[]
+  lists: ListsProps[]
 }
 
 interface TasksProps {
@@ -58,7 +58,7 @@ export const TasksContainer = ({ listSelected, lists }: TasksContainerProps) => 
         {tasks.length === 0 && <WithoutItemTasksContainer />}
 
         {tasks.map((task) => (
-          <ItemTasksContainer key={task.id} task={task.task} list={task.list} listSelected={listSelected} />
+          <ItemTasksContainer key={task.id} task={task.task} list={task.list} lists={lists} />
         ))}
       </S.TasksContent>
     </S.Container>

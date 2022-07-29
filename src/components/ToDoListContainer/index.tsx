@@ -19,6 +19,8 @@ interface ToDoListContainerProps {
 let MOCK_LISTS: ListsProps[] = [
   { name: 'All', id: 1, color: 'themeBlue' },
   { name: 'Food', id: 2, color: 'themePink' },
+  { name: 'School', id: 3, color: 'themeYellow' },
+  { name: 'Home', id: 4, color: 'themeGreen' },
 ]
 
 export const ToDoListContainer = ({ setModalAddListOpen, showList, setShowList }: ToDoListContainerProps) => {

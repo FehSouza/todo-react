@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Color } from '../../styles/theme'
 
 export const Modal = styled.div`
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.white}4D;
   position: fixed;
   top: 0;
   left: 0;
