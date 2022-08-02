@@ -7,10 +7,10 @@ export const Container = styled.div<{ marginTop?: number }>`
   margin-top: ${({ marginTop }) => (marginTop ? `${marginTop}rem` : '1rem')};
 `
 
-export const InputWrapper = styled.div<{ color?: Color; size?: number }>`
+export const InputWrapper = styled.div<{ color?: Color; size?: number; error?: boolean }>`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.focus};
-  border: 1px solid ${({ theme }) => theme.colors.focus};
+  border: 1px solid ${({ theme, error }) => (error ? theme.colors.themeRed : theme.colors.focus)};
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ export const InputWrapper = styled.div<{ color?: Color; size?: number }>`
   }
 
   &:focus-within {
-    border: 1px solid ${({ theme, color }) => theme.colors[color ?? 'text']};
+    border: 1px solid ${({ theme, color, error }) => (error ? theme.colors.themeRed : theme.colors[color ?? 'text'])};
   }
 `
 

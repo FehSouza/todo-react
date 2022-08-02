@@ -34,6 +34,10 @@ export const Container = styled.li<{ color: Color; state?: boolean; showList?: b
     cursor: pointer;
     background-color: ${({ theme, color }) => lighten(0.45, theme.colors[color])};
     color: ${({ theme, color }) => theme.colors[color]};
+
+    & button {
+      opacity: 1;
+    }
   }
 
   &:focus {
@@ -44,4 +48,16 @@ export const Container = styled.li<{ color: Color; state?: boolean; showList?: b
 
 export const NameList = styled.span`
   color: inherit;
+`
+
+export const Delete = styled.button<{ state?: boolean }>`
+  color: ${({ theme }) => theme.colors.delete};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-left: auto;
+  opacity: ${({ state }) => (state ? 1 : 0)};
+  transition-duration: 350ms;
 `

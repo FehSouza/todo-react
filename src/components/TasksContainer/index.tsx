@@ -1,8 +1,8 @@
 import { AiOutlinePlus } from 'react-icons/ai'
 import { FiSearch } from 'react-icons/fi'
+import { ListsProps } from '../../pages'
 import { InputAndButton } from '../InputAndButton'
 import { ItemTasksContainer } from '../ItemTasksContainer'
-import { ListsProps } from '../ToDoListContainer'
 import { WithoutItemTasksContainer } from '../WithoutItemTasksContainer'
 import * as S from './styles'
 
@@ -18,20 +18,20 @@ interface TasksProps {
 }
 
 const MOCK_TASKS: TasksProps[] = [
-  { task: 'Placeholder', list: 'Food', id: 1 },
-  { task: 'Teste', list: 'Home', id: 2 },
-  { task: 'Book', list: 'School', id: 3 },
-  { task: 'Teste 2', list: 'Home', id: 4 },
-  { task: 'Placeholder 2', list: 'School', id: 5 },
-  { task: 'Comida', list: 'Food', id: 6 },
-  { task: 'Placeholder 3', list: 'Food', id: 7 },
-  { task: 'Placeholder', list: 'Food', id: 8 },
-  { task: 'Teste', list: 'Home', id: 9 },
-  { task: 'Book', list: 'School', id: 10 },
-  { task: 'Teste 2', list: 'Home', id: 11 },
-  { task: 'Placeholder 2', list: 'School', id: 12 },
-  { task: 'Comida', list: 'Food', id: 13 },
-  { task: 'Placeholder 3', list: 'Food', id: 14 },
+  // { task: 'Placeholder', list: 'Food', id: 1 },
+  // { task: 'Teste', list: 'Home', id: 2 },
+  // { task: 'Book', list: 'School', id: 3 },
+  // { task: 'Teste 2', list: 'Home', id: 4 },
+  // { task: 'Placeholder 2', list: 'School', id: 5 },
+  // { task: 'Comida', list: 'Food', id: 6 },
+  // { task: 'Placeholder 3', list: 'Food', id: 7 },
+  // { task: 'Placeholder', list: 'Food', id: 8 },
+  // { task: 'Teste', list: 'Home', id: 9 },
+  // { task: 'Book', list: 'School', id: 10 },
+  // { task: 'Teste 2', list: 'Home', id: 11 },
+  // { task: 'Placeholder 2', list: 'School', id: 12 },
+  // { task: 'Comida', list: 'Food', id: 13 },
+  // { task: 'Placeholder 3', list: 'Food', id: 14 },
 ]
 
 export const TasksContainer = ({ listSelected, lists }: TasksContainerProps) => {

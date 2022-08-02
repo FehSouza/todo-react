@@ -1,14 +1,16 @@
-import { Dispatch } from 'react'
+import { Dispatch, MouseEvent } from 'react'
 import { BsPlusLg } from 'react-icons/bs'
 import { RiMenuFoldLine } from 'react-icons/ri'
+import { INITIAL_LIST, ListsProps } from '../../pages'
+import { customStorage } from '../../utils/customStorage'
 import { ItemListsContainer } from '../ItemListsContainer'
-import { ListsProps } from '../ToDoListContainer'
 import * as S from './styles'
 
 type ListsContainerProps = {
   lists: ListsProps[]
+  setLists: Dispatch<React.SetStateAction<ListsProps[]>>
   listSelected?: ListsProps
-  setListSelected: (list: ListsProps) => void
+  setListSelected: Dispatch<React.SetStateAction<ListsProps>>
   showList: boolean
   setShowList: Dispatch<React.SetStateAction<boolean>>
   setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
@@ -16,6 +18,7 @@ type ListsContainerProps = {
 
 export const ListsContainer = ({
   lists,
+  setLists,
   listSelected,
   setListSelected,
   showList,
@@ -25,6 +28,14 @@ export const ListsContainer = ({
   const handleToggleList = () => setShowList(!showList)
 
   const handleOpenModal = () => setModalAddListOpen(true)
+
+  const handleDeleteList = (event: MouseEvent<HTMLButtonElement>, id: number) => {
+    event.stopPropagation()
+    if (id === listSelected?.id) setListSelected(INITIAL_LIST)
+    const newList = lists.filter((list) => list.id !== id)
+    setLists(newList)
+    customStorage.setItem('lists', newList)
+  }
 
   return (
     <S.Container showList={showList}>
@@ -40,9 +51,11 @@ export const ListsContainer = ({
               key={list.id}
               text={list.name}
               color={list.color}
+              fixed={list.fixed}
               state={listSelected?.id === list.id}
               selectList={() => setListSelected(list)}
               showList={showList}
+              deleteList={(event) => handleDeleteList(event, list.id)}
             />
           ))}
         </S.ListsContent>

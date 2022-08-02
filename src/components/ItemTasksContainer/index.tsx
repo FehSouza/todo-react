@@ -1,4 +1,4 @@
-import { ListsProps } from '../ToDoListContainer'
+import { ListsProps } from '../../pages'
 import * as S from './styles'
 
 type ItemTasksContainerProps = {
