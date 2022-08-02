@@ -13,6 +13,10 @@ export const Container = styled.div`
 export const Title = styled.h2`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
+
+  &:first-letter {
+    text-transform: capitalize;
+  }
 `
 
 export const TasksContent = styled.ul`

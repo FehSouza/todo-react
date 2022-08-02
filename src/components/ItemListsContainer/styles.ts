@@ -14,7 +14,7 @@ export const Dot = styled.div`
 export const Container = styled.li<{ color: Color; state?: boolean; showList?: boolean }>`
   width: ${({ showList }) => (showList ? 'calc(100% - 0.25rem)' : '2.625rem')};
   height: 2.5rem;
-  background-color: ${({ theme, state, color }) => (state ? lighten(0.5, theme.colors[color]) : theme.colors.white)};
+  background-color: ${({ theme, state, color }) => (state ? lighten(0.45, theme.colors[color]) : theme.colors.white)};
   border: none;
   border-radius: 0.5rem;
   display: flex;
@@ -39,18 +39,22 @@ export const Container = styled.li<{ color: Color; state?: boolean; showList?: b
       opacity: 1;
     }
   }
-
-  &:focus {
-    background-color: ${({ theme, color }) => lighten(0.5, theme.colors[color])};
-    color: ${({ theme, color }) => theme.colors[color]};
-  }
 `
 
 export const NameList = styled.span`
   color: inherit;
+  display: inline-block;
+  width: calc(100% - 2.25rem - 2rem);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:first-letter {
+    text-transform: capitalize;
+  }
 `
 
-export const Delete = styled.button<{ state?: boolean }>`
+export const Delete = styled.button<{ state?: boolean; color: Color }>`
   color: ${({ theme }) => theme.colors.delete};
   display: flex;
   align-items: center;
@@ -60,4 +64,8 @@ export const Delete = styled.button<{ state?: boolean }>`
   margin-left: auto;
   opacity: ${({ state }) => (state ? 1 : 0)};
   transition-duration: 350ms;
+
+  & svg {
+    color: ${({ color, theme }) => theme.colors[color]};
+  }
 `

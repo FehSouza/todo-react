@@ -39,9 +39,9 @@ export const ListsContainer = ({
 
   return (
     <S.Container showList={showList}>
-      <S.ContainerTitle>
-        <S.Title onClick={handleToggleList}>Lists</S.Title>
-        <S.ButtonToggle onClick={handleToggleList}>{showList && <RiMenuFoldLine />}</S.ButtonToggle>
+      <S.ContainerTitle onClick={handleToggleList}>
+        <S.Title>Lists</S.Title>
+        <S.ButtonToggle>{showList && <RiMenuFoldLine />}</S.ButtonToggle>
       </S.ContainerTitle>
 
       {lists.length !== 0 && (

@@ -27,8 +27,8 @@ export const ItemListsContainer = ({
       <S.Dot />
       {showList && <S.NameList>{text}</S.NameList>}
 
-      {!fixed && (
-        <S.Delete onClick={deleteList} state={state}>
+      {!fixed && showList && (
+        <S.Delete onClick={deleteList} state={state} color={color}>
           <AiOutlineDelete />
         </S.Delete>
       )}

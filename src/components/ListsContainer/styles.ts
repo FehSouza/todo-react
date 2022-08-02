@@ -14,15 +14,19 @@ export const ContainerTitle = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+
+  &:hover {
+    cursor: pointer;
+
+    & svg {
+      margin-right: 0.5rem;
+    }
+  }
 `
 
 export const Title = styled.h2`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
-
-  &:hover {
-    cursor: pointer;
-  }
 `
 
 export const ButtonToggle = styled.button`
@@ -33,16 +37,8 @@ export const ButtonToggle = styled.button`
 
   & svg {
     font-size: 1.125rem;
-    margin-right: 0px;
+    margin-right: 0.25rem;
     transition-duration: 350ms;
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    & svg {
-      margin-right: 0.25rem;
-    }
   }
 `
 
