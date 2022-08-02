@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ToDoListContainer } from '../../components'
-import { ModalAddList } from '../../models'
+import { ModalAddList, ModalAddTask } from '../../models'
 import { Color } from '../../styles/theme'
 import { customStorage } from '../../utils/customStorage'
 import * as S from './styles'
@@ -18,6 +18,7 @@ export const Home = () => {
   const [lists, setLists] = useState<ListsProps[]>([INITIAL_LIST])
   const [showList, setShowList] = useState(true)
   const [modalAddListOpen, setModalAddListOpen] = useState(false)
+  const [modalAddTaskOpen, setModalAddTaskOpen] = useState(false)
   const [listSelected, setListSelected] = useState<ListsProps>(INITIAL_LIST)
 
   useEffect(() => {
@@ -29,6 +30,7 @@ export const Home = () => {
     <S.Container>
       <ToDoListContainer
         setModalAddListOpen={setModalAddListOpen}
+        setModalAddTaskOpen={setModalAddTaskOpen}
         showList={showList}
         setShowList={setShowList}
         lists={lists}
@@ -44,6 +46,8 @@ export const Home = () => {
         lists={lists}
         setLists={setLists}
       />
+
+      <ModalAddTask isOpen={modalAddTaskOpen} setModalAddTaskOpen={setModalAddTaskOpen} showList={showList} />
     </S.Container>
   )
 }

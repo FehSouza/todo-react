@@ -6,6 +6,7 @@ import * as S from './styles'
 
 interface ToDoListContainerProps {
   setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
+  setModalAddTaskOpen: Dispatch<React.SetStateAction<boolean>>
   showList: boolean
   setShowList: Dispatch<React.SetStateAction<boolean>>
   lists: ListsProps[]
@@ -16,6 +17,7 @@ interface ToDoListContainerProps {
 
 export const ToDoListContainer = ({
   setModalAddListOpen,
+  setModalAddTaskOpen,
   showList,
   setShowList,
   lists,
@@ -34,7 +36,7 @@ export const ToDoListContainer = ({
         setShowList={setShowList}
         setModalAddListOpen={setModalAddListOpen}
       />
-      <TasksContainer listSelected={listSelected} lists={lists} />
+      <TasksContainer listSelected={listSelected} lists={lists} setModalAddTaskOpen={setModalAddTaskOpen} />
     </S.Container>
   )
 }

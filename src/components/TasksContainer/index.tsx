@@ -1,3 +1,4 @@
+import { Dispatch } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { FiSearch } from 'react-icons/fi'
 import { ListsProps } from '../../pages'
@@ -9,6 +10,7 @@ import * as S from './styles'
 type TasksContainerProps = {
   listSelected?: ListsProps
   lists: ListsProps[]
+  setModalAddTaskOpen: Dispatch<React.SetStateAction<boolean>>
 }
 
 interface TasksProps {
@@ -34,13 +36,15 @@ const MOCK_TASKS: TasksProps[] = [
   // { task: 'Placeholder 3', list: 'Food', id: 14 },
 ]
 
-export const TasksContainer = ({ listSelected, lists }: TasksContainerProps) => {
+export const TasksContainer = ({ listSelected, lists, setModalAddTaskOpen }: TasksContainerProps) => {
   const tasks = MOCK_TASKS.filter((task) => {
     if (listSelected?.name === 'All') return true
     return listSelected?.name === task.list
   })
 
   const valueTitle = lists?.length === 0 ? 'Add a new task' : 'Select a list'
+
+  const handleOpenModal = () => setModalAddTaskOpen(true)
 
   return (
     <S.Container>
@@ -52,6 +56,7 @@ export const TasksContainer = ({ listSelected, lists }: TasksContainerProps) => 
         buttonIconRight={AiOutlinePlus}
         color={listSelected?.color}
         size={1.125}
+        onClickButton={handleOpenModal}
       />
 
       <S.TasksContent>

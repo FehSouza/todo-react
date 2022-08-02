@@ -4,7 +4,7 @@ import { Color } from '../../styles/theme'
 
 export const Container = styled.div<{ marginTop?: number }>`
   display: flex;
-  margin-top: ${({ marginTop }) => (marginTop ? `${marginTop}rem` : '1rem')};
+  margin-top: ${({ marginTop }) => (marginTop !== undefined ? `${marginTop}rem` : '1rem')};
 `
 
 export const InputWrapper = styled.div<{ color?: Color; size?: number; error?: boolean }>`
@@ -41,16 +41,18 @@ export const Input = styled.input`
 `
 
 export const Button = styled.button<{ color?: Color; size?: number }>`
-  width: 2.5rem;
+  min-width: 2.5rem;
   height: 2.5rem;
   background-color: ${({ theme, color }) => theme.colors[color ?? 'textLight']};
   border: none;
   border-radius: 0.5rem;
   transition-duration: 1000ms;
   margin-left: 1rem;
+  padding: 0 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${({ theme }) => theme.colors.white};
 
   & svg {
     font-size: ${({ size }) => (size ? `${size}rem` : '1rem')};
