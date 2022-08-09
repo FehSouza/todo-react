@@ -36,7 +36,8 @@ export const GlobalStyles = css`
   }
 
   button,
-  input {
+  input,
+  textarea {
     margin: 0;
     padding: 0;
     border: none;

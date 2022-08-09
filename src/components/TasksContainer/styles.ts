@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   flex: 1;
   height: 100%;
+  max-width: calc(100% - 25%);
   padding-left: 1.5rem;
   box-sizing: border-box;
   display: flex;
@@ -13,6 +14,7 @@ export const Container = styled.div`
 export const Title = styled.h2`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
+  text-transform: lowercase;
 
   &:first-letter {
     text-transform: capitalize;

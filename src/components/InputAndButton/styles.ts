@@ -11,9 +11,10 @@ export const InputWrapper = styled.div<{ color?: Color; size?: number; error?: b
   flex: 1;
   background-color: ${({ theme }) => theme.colors.focus};
   border: 1px solid ${({ theme, error }) => (error ? theme.colors.themeRed : theme.colors.focus)};
-  border-radius: 8px;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
+  transition-duration: 350ms;
 
   & svg {
     padding-left: 1rem;
@@ -40,25 +41,34 @@ export const Input = styled.input`
   }
 `
 
-export const Button = styled.button<{ color?: Color; size?: number }>`
+export const Button = styled.button<{ color?: Color; size?: number; errorButton?: boolean }>`
   min-width: 2.5rem;
+  max-width: 7rem;
   height: 2.5rem;
   background-color: ${({ theme, color }) => theme.colors[color ?? 'textLight']};
-  border: none;
+  border: 1.5px solid
+    ${({ theme, errorButton, color }) => (errorButton ? theme.colors.themeRed : theme.colors[color ?? 'textLight'])};
   border-radius: 0.5rem;
-  transition-duration: 1000ms;
+  transition-duration: 350ms;
   margin-left: 1rem;
   padding: 0 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: ${({ theme }) => theme.colors.white};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-transform: lowercase;
+  display: inline-block;
+
+  &:first-letter {
+    text-transform: capitalize;
+  }
 
   & svg {
     font-size: ${({ size }) => (size ? `${size}rem` : '1rem')};
     color: ${({ theme }) => theme.colors.white};
     transform: rotate(0deg);
-    transition-duration: 1000ms;
+    transition-duration: 750ms;
+    height: 100%;
   }
 
   &:hover {
@@ -66,7 +76,7 @@ export const Button = styled.button<{ color?: Color; size?: number }>`
 
     & svg {
       transform: rotate(360deg);
-      transition-duration: 1000ms;
+      transition-duration: 750ms;
     }
   }
 `

@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent, MouseEvent } from 'react'
 import { IconType } from 'react-icons'
 import { Color } from '../../styles/theme'
 import * as S from './styles'
@@ -13,9 +13,10 @@ interface InputAndButtonProps {
   color?: Color
   size?: number
   marginTop?: number
-  onClickButton?: () => void
+  onClickButton?: (e: MouseEvent<HTMLButtonElement>) => void
   onChangeInput?: (e: ChangeEvent<HTMLInputElement>) => void
   errorInput?: boolean
+  errorButton?: boolean
   valueInput?: string
 }
 
@@ -32,6 +33,7 @@ export const InputAndButton = ({
   onClickButton,
   onChangeInput,
   errorInput,
+  errorButton,
   valueInput,
 }: InputAndButtonProps) => {
   return (
@@ -44,7 +46,7 @@ export const InputAndButton = ({
         {InputIconRight && <InputIconRight />}
       </S.InputWrapper>
 
-      <S.Button color={color} size={size} onClick={onClickButton}>
+      <S.Button color={color} size={size} onClick={onClickButton} errorButton={errorButton}>
         {ButtonIconLeft && <ButtonIconLeft />}
 
         {buttonText}

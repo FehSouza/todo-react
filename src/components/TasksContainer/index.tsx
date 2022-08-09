@@ -11,33 +11,19 @@ type TasksContainerProps = {
   listSelected?: ListsProps
   lists: ListsProps[]
   setModalAddTaskOpen: Dispatch<React.SetStateAction<boolean>>
+  tasks?: TasksProps[]
 }
 
-interface TasksProps {
+export interface TasksProps {
   task: string
   list: string
   id: number
+  description: string
+  date: Date
 }
 
-const MOCK_TASKS: TasksProps[] = [
-  // { task: 'Placeholder', list: 'Food', id: 1 },
-  // { task: 'Teste', list: 'Home', id: 2 },
-  // { task: 'Book', list: 'School', id: 3 },
-  // { task: 'Teste 2', list: 'Home', id: 4 },
-  // { task: 'Placeholder 2', list: 'School', id: 5 },
-  // { task: 'Comida', list: 'Food', id: 6 },
-  // { task: 'Placeholder 3', list: 'Food', id: 7 },
-  // { task: 'Placeholder', list: 'Food', id: 8 },
-  // { task: 'Teste', list: 'Home', id: 9 },
-  // { task: 'Book', list: 'School', id: 10 },
-  // { task: 'Teste 2', list: 'Home', id: 11 },
-  // { task: 'Placeholder 2', list: 'School', id: 12 },
-  // { task: 'Comida', list: 'Food', id: 13 },
-  // { task: 'Placeholder 3', list: 'Food', id: 14 },
-]
-
-export const TasksContainer = ({ listSelected, lists, setModalAddTaskOpen }: TasksContainerProps) => {
-  const tasks = MOCK_TASKS.filter((task) => {
+export const TasksContainer = ({ listSelected, lists, setModalAddTaskOpen, tasks }: TasksContainerProps) => {
+  const newTasks = tasks?.filter((task) => {
     if (listSelected?.name === 'All') return true
     return listSelected?.name === task.list
   })
@@ -60,9 +46,9 @@ export const TasksContainer = ({ listSelected, lists, setModalAddTaskOpen }: Tas
       />
 
       <S.TasksContent>
-        {tasks.length === 0 && <WithoutItemTasksContainer />}
+        {newTasks?.length === 0 && <WithoutItemTasksContainer />}
 
-        {tasks.map((task) => (
+        {newTasks?.map((task) => (
           <ItemTasksContainer key={task.id} task={task.task} list={task.list} lists={lists} />
         ))}
       </S.TasksContent>

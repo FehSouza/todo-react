@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ToDoListContainer } from '../../components'
+import { TasksProps, ToDoListContainer } from '../../components'
 import { ModalAddList, ModalAddTask } from '../../models'
 import { Color } from '../../styles/theme'
 import { customStorage } from '../../utils/customStorage'
@@ -16,14 +16,17 @@ export const INITIAL_LIST: ListsProps = { name: 'All', id: 1, color: 'themeBlue'
 
 export const Home = () => {
   const [lists, setLists] = useState<ListsProps[]>([INITIAL_LIST])
+  const [listSelected, setListSelected] = useState<ListsProps>(INITIAL_LIST)
   const [showList, setShowList] = useState(true)
+  const [tasks, setTasks] = useState<TasksProps[]>([])
   const [modalAddListOpen, setModalAddListOpen] = useState(false)
   const [modalAddTaskOpen, setModalAddTaskOpen] = useState(false)
-  const [listSelected, setListSelected] = useState<ListsProps>(INITIAL_LIST)
 
   useEffect(() => {
     const listsLocalStorage = customStorage.getItem('lists')
+    const tasksLocalStorage = customStorage.getItem('tasks')
     if (listsLocalStorage) setLists(listsLocalStorage)
+    if (tasksLocalStorage) setTasks(tasksLocalStorage)
   }, [])
 
   return (
@@ -37,6 +40,7 @@ export const Home = () => {
         setLists={setLists}
         listSelected={listSelected}
         setListSelected={setListSelected}
+        tasks={tasks}
       />
 
       <ModalAddList
@@ -47,7 +51,14 @@ export const Home = () => {
         setLists={setLists}
       />
 
-      <ModalAddTask isOpen={modalAddTaskOpen} setModalAddTaskOpen={setModalAddTaskOpen} showList={showList} />
+      <ModalAddTask
+        isOpen={modalAddTaskOpen}
+        setModalAddTaskOpen={setModalAddTaskOpen}
+        showList={showList}
+        lists={lists}
+        tasks={tasks}
+        setTasks={setTasks}
+      />
     </S.Container>
   )
 }

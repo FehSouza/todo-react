@@ -1,7 +1,7 @@
 import { Dispatch } from 'react'
 import { ListsProps } from '../../pages'
 import { ListsContainer } from '../ListsContainer'
-import { TasksContainer } from '../TasksContainer'
+import { TasksContainer, TasksProps } from '../TasksContainer'
 import * as S from './styles'
 
 interface ToDoListContainerProps {
@@ -13,6 +13,7 @@ interface ToDoListContainerProps {
   setLists: Dispatch<React.SetStateAction<ListsProps[]>>
   listSelected: ListsProps
   setListSelected: Dispatch<React.SetStateAction<ListsProps>>
+  tasks?: TasksProps[]
 }
 
 export const ToDoListContainer = ({
@@ -24,6 +25,7 @@ export const ToDoListContainer = ({
   setLists,
   listSelected,
   setListSelected,
+  tasks,
 }: ToDoListContainerProps) => {
   return (
     <S.Container>
@@ -36,7 +38,12 @@ export const ToDoListContainer = ({
         setShowList={setShowList}
         setModalAddListOpen={setModalAddListOpen}
       />
-      <TasksContainer listSelected={listSelected} lists={lists} setModalAddTaskOpen={setModalAddTaskOpen} />
+      <TasksContainer
+        listSelected={listSelected}
+        lists={lists}
+        setModalAddTaskOpen={setModalAddTaskOpen}
+        tasks={tasks}
+      />
     </S.Container>
   )
 }

@@ -48,6 +48,7 @@ export const NameList = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  text-transform: lowercase;
 
   &:first-letter {
     text-transform: capitalize;
