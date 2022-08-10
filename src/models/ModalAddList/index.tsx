@@ -46,7 +46,9 @@ export const ModalAddList = ({ isOpen, setModalAddListOpen, showList, lists, set
   const handleThemeColor = (color: Color) => setColorThemeSelected(color)
 
   const handleCreateList = () => {
-    if (!nameList || nameList.length <= 3) {
+    const checkNameListExists = lists.some((list) => list.name.toLowerCase() === nameList.toLowerCase())
+
+    if (!nameList || nameList.length <= 3 || checkNameListExists) {
       setErrorInput(true)
       return
     }
