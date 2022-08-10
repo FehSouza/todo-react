@@ -41,6 +41,7 @@ export const Home = () => {
         listSelected={listSelected}
         setListSelected={setListSelected}
         tasks={tasks}
+        setTasks={setTasks}
       />
 
       <ModalAddList

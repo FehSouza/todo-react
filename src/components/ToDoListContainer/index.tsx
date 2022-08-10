@@ -14,6 +14,7 @@ interface ToDoListContainerProps {
   listSelected: ListsProps
   setListSelected: Dispatch<React.SetStateAction<ListsProps>>
   tasks?: TasksProps[]
+  setTasks: React.Dispatch<React.SetStateAction<TasksProps[]>>
 }
 
 export const ToDoListContainer = ({
@@ -26,6 +27,7 @@ export const ToDoListContainer = ({
   listSelected,
   setListSelected,
   tasks,
+  setTasks,
 }: ToDoListContainerProps) => {
   return (
     <S.Container>
@@ -37,6 +39,8 @@ export const ToDoListContainer = ({
         showList={showList}
         setShowList={setShowList}
         setModalAddListOpen={setModalAddListOpen}
+        tasks={tasks}
+        setTasks={setTasks}
       />
       <TasksContainer
         listSelected={listSelected}

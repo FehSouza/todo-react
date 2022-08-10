@@ -4,6 +4,7 @@ import { RiMenuFoldLine } from 'react-icons/ri'
 import { INITIAL_LIST, ListsProps } from '../../pages'
 import { customStorage } from '../../utils/customStorage'
 import { ItemListsContainer } from '../ItemListsContainer'
+import { TasksProps } from '../TasksContainer'
 import * as S from './styles'
 
 type ListsContainerProps = {
@@ -14,6 +15,8 @@ type ListsContainerProps = {
   showList: boolean
   setShowList: Dispatch<React.SetStateAction<boolean>>
   setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
+  tasks?: TasksProps[]
+  setTasks: Dispatch<React.SetStateAction<TasksProps[]>>
 }
 
 export const ListsContainer = ({
@@ -24,17 +27,37 @@ export const ListsContainer = ({
   showList,
   setShowList,
   setModalAddListOpen,
+  tasks,
+  setTasks,
 }: ListsContainerProps) => {
   const handleToggleList = () => setShowList(!showList)
 
   const handleOpenModal = () => setModalAddListOpen(true)
 
-  const handleDeleteList = (event: MouseEvent<HTMLButtonElement>, id: number) => {
+  const updateTasks = (nameList: string) => {
+    if (!tasks) return
+
+    const newTasks = tasks.map((task) => {
+      if (task.list === nameList) {
+        return { ...task, list: 'All' }
+      }
+      return task
+    })
+
+    setTasks(newTasks)
+    customStorage.setItem('tasks', newTasks)
+  }
+
+  const handleDeleteList = (event: MouseEvent<HTMLButtonElement>, id: number, name: string) => {
     event.stopPropagation()
+
     if (id === listSelected?.id) setListSelected(INITIAL_LIST)
-    const newList = lists.filter((list) => list.id !== id)
-    setLists(newList)
-    customStorage.setItem('lists', newList)
+
+    const newLists = lists.filter((list) => list.id !== id)
+    setLists(newLists)
+    customStorage.setItem('lists', newLists)
+
+    updateTasks(name)
   }
 
   return (
@@ -55,7 +78,7 @@ export const ListsContainer = ({
               state={listSelected?.id === list.id}
               selectList={() => setListSelected(list)}
               showList={showList}
-              deleteList={(event) => handleDeleteList(event, list.id)}
+              deleteList={(event) => handleDeleteList(event, list.id, list.name)}
             />
           ))}
         </S.ListsContent>
