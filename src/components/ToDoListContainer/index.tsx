@@ -1,4 +1,4 @@
-import { Dispatch } from 'react'
+import { Dispatch, useState } from 'react'
 import { ListsProps } from '../../pages'
 import { ListsContainer } from '../ListsContainer'
 import { TasksContainer, TasksProps } from '../TasksContainer'
@@ -29,25 +29,40 @@ export const ToDoListContainer = ({
   tasks,
   setTasks,
 }: ToDoListContainerProps) => {
+  const [showDetails, setShowDetails] = useState(false)
+  const [closing, setClosing] = useState(false)
+
+  const handleClose = () => {
+    if (!closing) return
+    setClosing(false)
+    setShowDetails(false)
+  }
+
   return (
     <S.Container>
-      <ListsContainer
-        lists={lists}
-        setLists={setLists}
-        listSelected={listSelected}
-        setListSelected={setListSelected}
-        showList={showList}
-        setShowList={setShowList}
-        setModalAddListOpen={setModalAddListOpen}
-        tasks={tasks}
-        setTasks={setTasks}
-      />
-      <TasksContainer
-        listSelected={listSelected}
-        lists={lists}
-        setModalAddTaskOpen={setModalAddTaskOpen}
-        tasks={tasks}
-      />
+      <S.ToDoListContainer showDetails={showDetails}>
+        <ListsContainer
+          lists={lists}
+          setLists={setLists}
+          listSelected={listSelected}
+          setListSelected={setListSelected}
+          showList={showList}
+          setShowList={setShowList}
+          setModalAddListOpen={setModalAddListOpen}
+          tasks={tasks}
+          setTasks={setTasks}
+        />
+        <TasksContainer
+          listSelected={listSelected}
+          lists={lists}
+          setModalAddTaskOpen={setModalAddTaskOpen}
+          tasks={tasks}
+          showDetails={showDetails}
+          setShowDetails={setShowDetails}
+          setClosing={setClosing}
+        />
+      </S.ToDoListContainer>
+      {showDetails && <S.DetailsTask closing={closing} onAnimationEnd={handleClose} />}
     </S.Container>
   )
 }

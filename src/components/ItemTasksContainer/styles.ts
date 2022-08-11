@@ -20,6 +20,7 @@ export const Container = styled.li`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.focus};
+    cursor: pointer;
   }
 
   &:focus {

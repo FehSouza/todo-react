@@ -79,6 +79,8 @@ export const ListsContainer = ({
               selectList={() => setListSelected(list)}
               showList={showList}
               deleteList={(event) => handleDeleteList(event, list.id, list.name)}
+              tasks={tasks}
+              setTasks={setTasks}
             />
           ))}
         </S.ListsContent>

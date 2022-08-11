@@ -12,6 +12,9 @@ type TasksContainerProps = {
   lists: ListsProps[]
   setModalAddTaskOpen: Dispatch<React.SetStateAction<boolean>>
   tasks?: TasksProps[]
+  showDetails: boolean
+  setShowDetails: Dispatch<React.SetStateAction<boolean>>
+  setClosing: Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface TasksProps {
@@ -22,7 +25,15 @@ export interface TasksProps {
   date: Date
 }
 
-export const TasksContainer = ({ listSelected, lists, setModalAddTaskOpen, tasks }: TasksContainerProps) => {
+export const TasksContainer = ({
+  listSelected,
+  lists,
+  setModalAddTaskOpen,
+  tasks,
+  showDetails,
+  setShowDetails,
+  setClosing,
+}: TasksContainerProps) => {
   const newTasks = tasks?.filter((task) => {
     if (listSelected?.name === 'All') return true
     return listSelected?.name === task.list
@@ -31,6 +42,11 @@ export const TasksContainer = ({ listSelected, lists, setModalAddTaskOpen, tasks
   const valueTitle = lists?.length === 0 ? 'Add a new task' : 'Select a list'
 
   const handleOpenModal = () => setModalAddTaskOpen(true)
+
+  const handleShowDetails = () => {
+    if (showDetails) return setClosing(true)
+    setShowDetails(true)
+  }
 
   return (
     <S.Container>
@@ -49,7 +65,14 @@ export const TasksContainer = ({ listSelected, lists, setModalAddTaskOpen, tasks
         {newTasks?.length === 0 && <WithoutItemTasksContainer />}
 
         {newTasks?.map((task) => (
-          <ItemTasksContainer key={task.id} task={task.task} list={task.list} lists={lists} />
+          <ItemTasksContainer
+            key={task.id}
+            task={task.task}
+            list={task.list}
+            lists={lists}
+            id={task.id}
+            showDetails={handleShowDetails}
+          />
         ))}
       </S.TasksContent>
     </S.Container>
