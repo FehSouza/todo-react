@@ -17,6 +17,8 @@ type ListsContainerProps = {
   setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
   tasks?: TasksProps[]
   setTasks: Dispatch<React.SetStateAction<TasksProps[]>>
+  setShowDetails: Dispatch<React.SetStateAction<boolean>>
+  setClosing: Dispatch<React.SetStateAction<boolean>>
 }
 
 export const ListsContainer = ({
@@ -29,6 +31,8 @@ export const ListsContainer = ({
   setModalAddListOpen,
   tasks,
   setTasks,
+  setShowDetails,
+  setClosing,
 }: ListsContainerProps) => {
   const handleToggleList = () => setShowList(!showList)
 
@@ -81,6 +85,9 @@ export const ListsContainer = ({
               deleteList={(event) => handleDeleteList(event, list.id, list.name)}
               tasks={tasks}
               setTasks={setTasks}
+              setClosing={setClosing}
+              setShowDetails={setShowDetails}
+              
             />
           ))}
         </S.ListsContent>

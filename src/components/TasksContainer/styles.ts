@@ -28,17 +28,17 @@ export const TasksContent = styled.ul`
   overflow-y: auto;
 
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 0.75rem;
   }
 
   ::-webkit-scrollbar-track {
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background-color: ${({ theme }) => lighten(-0.04, theme.colors.focus)};
   }
 
   ::-webkit-scrollbar-thumb {
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background-color: ${({ theme }) => theme.colors.textLight};
-    border: 3.5px solid ${({ theme }) => lighten(-0.04, theme.colors.focus)};
+    border: 0.21875rem solid ${({ theme }) => lighten(-0.04, theme.colors.focus)};
   }
 `

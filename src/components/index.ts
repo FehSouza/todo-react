@@ -1,3 +1,4 @@
+export * from './DetailsTask/index'
 export * from './DropdownModalAddTask/index'
 export * from './InputAndButton/index'
 export * from './ItemListsContainer/index'

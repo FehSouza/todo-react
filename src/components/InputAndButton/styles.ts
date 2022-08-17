@@ -10,7 +10,7 @@ export const Container = styled.div<{ marginTop?: number }>`
 export const InputWrapper = styled.div<{ color?: Color; size?: number; error?: boolean }>`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.focus};
-  border: 1px solid ${({ theme, error }) => (error ? theme.colors.themeRed : theme.colors.focus)};
+  border: 0.0625rem solid ${({ theme, error }) => (error ? theme.colors.themeRed : theme.colors.focus)};
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@ export const InputWrapper = styled.div<{ color?: Color; size?: number; error?: b
   }
 
   &:focus-within {
-    border: 1px solid ${({ theme, color, error }) => (error ? theme.colors.themeRed : theme.colors[color ?? 'text'])};
+    border: 0.0625rem solid ${({ theme, color, error }) => (error ? theme.colors.themeRed : theme.colors[color ?? 'text'])};
   }
 `
 
@@ -46,7 +46,7 @@ export const Button = styled.button<{ color?: Color; size?: number; errorButton?
   max-width: 7rem;
   height: 2.5rem;
   background-color: ${({ theme, color }) => theme.colors[color ?? 'textLight']};
-  border: 1.5px solid
+  border: 0.09375rem solid
     ${({ theme, errorButton, color }) => (errorButton ? theme.colors.themeRed : theme.colors[color ?? 'textLight'])};
   border-radius: 0.5rem;
   transition-duration: 350ms;

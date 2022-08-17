@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import { Color } from '../../styles/theme'
 
-export const Container = styled.li`
+export const Container = styled.li<{ state: boolean }>`
   width: calc(100% - 0.25rem);
   max-width: calc(100% - 0.25rem);
   height: 3.125rem;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, state }) => (state ? `${theme.colors.focus}` : `${theme.colors.white}`)};
   border: none;
   border-radius: 0.5rem;
   display: flex;

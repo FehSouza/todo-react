@@ -15,6 +15,8 @@ type TasksContainerProps = {
   showDetails: boolean
   setShowDetails: Dispatch<React.SetStateAction<boolean>>
   setClosing: Dispatch<React.SetStateAction<boolean>>
+  taskSelected?: TasksProps
+  setTaskSelected: Dispatch<React.SetStateAction<TasksProps | undefined>>
 }
 
 export interface TasksProps {
@@ -33,6 +35,8 @@ export const TasksContainer = ({
   showDetails,
   setShowDetails,
   setClosing,
+  taskSelected,
+  setTaskSelected,
 }: TasksContainerProps) => {
   const newTasks = tasks?.filter((task) => {
     if (listSelected?.name === 'All') return true
@@ -43,9 +47,14 @@ export const TasksContainer = ({
 
   const handleOpenModal = () => setModalAddTaskOpen(true)
 
-  const handleShowDetails = () => {
-    if (showDetails) return setClosing(true)
-    setShowDetails(true)
+  const handleShowDetails = (task: TasksProps) => {
+    if (showDetails) {
+      setClosing(true)
+    } else {
+      setTaskSelected(task)
+      setShowDetails(true)
+      setClosing(false)
+    }
   }
 
   return (
@@ -71,7 +80,8 @@ export const TasksContainer = ({
             list={task.list}
             lists={lists}
             id={task.id}
-            showDetails={handleShowDetails}
+            state={taskSelected?.id === task.id}
+            showDetails={() => handleShowDetails(task)}
           />
         ))}
       </S.TasksContent>

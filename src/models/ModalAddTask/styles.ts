@@ -8,6 +8,7 @@ export const Modal = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
 `
 
 export const Content = styled.div<{ showList: boolean }>`
@@ -35,7 +36,7 @@ export const Description = styled.textarea<{ errorTextArea?: boolean }>`
   width: 100%;
   height: 10.375rem;
   background-color: ${({ theme }) => theme.colors.focus};
-  border: 1px solid ${({ theme, errorTextArea }) => (errorTextArea ? theme.colors.themeRed : theme.colors.focus)};
+  border: 0.0625rem solid ${({ theme, errorTextArea }) => (errorTextArea ? theme.colors.themeRed : theme.colors.focus)};
   border-radius: 0.5rem;
   padding: 1rem;
   margin-top: 0.5rem;
@@ -50,22 +51,23 @@ export const Description = styled.textarea<{ errorTextArea?: boolean }>`
   }
 
   &:focus {
-    border: 1px solid ${({ theme, errorTextArea }) => (errorTextArea ? theme.colors.themeRed : theme.colors.focus)};
+    border: 0.0625rem solid
+      ${({ theme, errorTextArea }) => (errorTextArea ? theme.colors.themeRed : theme.colors.focus)};
   }
 
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 0.75rem;
   }
 
   ::-webkit-scrollbar-track {
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background-color: ${({ theme }) => theme.colors.focus};
   }
 
   ::-webkit-scrollbar-thumb {
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background-color: ${({ theme }) => theme.colors.textLight};
-    border: 3.5px solid ${({ theme }) => theme.colors.focus};
+    border: 0.21875rem solid ${({ theme }) => theme.colors.focus};
   }
 `
 

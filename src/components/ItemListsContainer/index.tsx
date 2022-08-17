@@ -14,6 +14,8 @@ type ItemListsContainerProps = {
   deleteList: MouseEventHandler<HTMLButtonElement>
   tasks?: TasksProps[]
   setTasks: Dispatch<React.SetStateAction<TasksProps[]>>
+  setClosing: Dispatch<React.SetStateAction<boolean>>
+  setShowDetails: Dispatch<React.SetStateAction<boolean>>
 }
 
 export const ItemListsContainer = ({
@@ -26,6 +28,8 @@ export const ItemListsContainer = ({
   deleteList,
   tasks,
   setTasks,
+  setClosing,
+  setShowDetails,
 }: ItemListsContainerProps) => {
   const onDragOver = (e: React.DragEvent<HTMLLIElement>) => e.preventDefault()
 
@@ -44,10 +48,16 @@ export const ItemListsContainer = ({
     setTasks(newTasks)
   }
 
+  const handleCloseDetails = () => {
+    selectList()
+    setClosing(false)
+    setShowDetails(false)
+  }
+
   return (
     <S.Container
       showList={showList}
-      onClick={selectList}
+      onClick={handleCloseDetails}
       color={color}
       state={state}
       onDragOver={(e) => onDragOver(e)}

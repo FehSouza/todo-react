@@ -1,5 +1,6 @@
 import { Dispatch, useState } from 'react'
 import { ListsProps } from '../../pages'
+import { DetailsTask } from '../DetailsTask'
 import { ListsContainer } from '../ListsContainer'
 import { TasksContainer, TasksProps } from '../TasksContainer'
 import * as S from './styles'
@@ -29,14 +30,9 @@ export const ToDoListContainer = ({
   tasks,
   setTasks,
 }: ToDoListContainerProps) => {
-  const [showDetails, setShowDetails] = useState(false)
+  const [taskSelected, setTaskSelected] = useState<TasksProps>()
   const [closing, setClosing] = useState(false)
-
-  const handleClose = () => {
-    if (!closing) return
-    setClosing(false)
-    setShowDetails(false)
-  }
+  const [showDetails, setShowDetails] = useState(false)
 
   return (
     <S.Container>
@@ -51,6 +47,8 @@ export const ToDoListContainer = ({
           setModalAddListOpen={setModalAddListOpen}
           tasks={tasks}
           setTasks={setTasks}
+          setShowDetails={setShowDetails}
+          setClosing={setClosing}
         />
         <TasksContainer
           listSelected={listSelected}
@@ -60,9 +58,18 @@ export const ToDoListContainer = ({
           showDetails={showDetails}
           setShowDetails={setShowDetails}
           setClosing={setClosing}
+          taskSelected={taskSelected}
+          setTaskSelected={setTaskSelected}
         />
       </S.ToDoListContainer>
-      {showDetails && <S.DetailsTask closing={closing} onAnimationEnd={handleClose} />}
+      {showDetails && (
+        <DetailsTask
+          closing={closing}
+          setClosing={setClosing}
+          setShowDetails={setShowDetails}
+          taskSelected={taskSelected}
+        />
+      )}
     </S.Container>
   )
 }

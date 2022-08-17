@@ -17,18 +17,18 @@ export const Content = styled.div`
   z-index: 1;
 
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 0.75rem;
   }
 
   ::-webkit-scrollbar-track {
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background-color: ${({ theme }) => theme.colors.focus};
   }
 
   ::-webkit-scrollbar-thumb {
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background-color: ${({ theme }) => theme.colors.textLight};
-    border: 3.5px solid ${({ theme }) => theme.colors.focus};
+    border: 0.21875rem solid ${({ theme }) => theme.colors.focus};
   }
 `
 
