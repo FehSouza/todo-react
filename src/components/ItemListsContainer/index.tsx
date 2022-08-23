@@ -1,7 +1,7 @@
-import { Dispatch, MouseEventHandler } from 'react'
+import { MouseEventHandler } from 'react'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { useToDo } from '../../context'
 import { Color } from '../../styles/theme'
-import { TasksProps } from '../TasksContainer'
 import * as S from './styles'
 
 type ItemListsContainerProps = {
@@ -10,27 +10,12 @@ type ItemListsContainerProps = {
   fixed?: boolean
   state: boolean
   selectList: () => void
-  showList: boolean
   deleteList: MouseEventHandler<HTMLButtonElement>
-  tasks?: TasksProps[]
-  setTasks: Dispatch<React.SetStateAction<TasksProps[]>>
-  setClosing: Dispatch<React.SetStateAction<boolean>>
-  setShowDetails: Dispatch<React.SetStateAction<boolean>>
 }
 
-export const ItemListsContainer = ({
-  text,
-  color,
-  fixed,
-  state,
-  selectList,
-  showList,
-  deleteList,
-  tasks,
-  setTasks,
-  setClosing,
-  setShowDetails,
-}: ItemListsContainerProps) => {
+export const ItemListsContainer = ({ text, color, fixed, state, selectList, deleteList }: ItemListsContainerProps) => {
+  const { tasks, setTasks, showList, setClosing, setShowDetails } = useToDo()
+
   const onDragOver = (e: React.DragEvent<HTMLLIElement>) => e.preventDefault()
 
   const onDrop = (e: React.DragEvent<HTMLLIElement>, listName: string) => {

@@ -1,21 +1,13 @@
-import { ChangeEvent, Dispatch, Fragment, KeyboardEvent, MouseEvent, useState } from 'react'
+import { ChangeEvent, Fragment, KeyboardEvent, MouseEvent, useState } from 'react'
 import { BsPencil } from 'react-icons/bs'
 import { FiSave } from 'react-icons/fi'
-import { DropdownModalAddTask, InputAndButton, TasksProps } from '../../components'
-import { ListsProps } from '../../pages'
+import { DropdownModalAddTask, InputAndButton } from '../../components'
+import { ListsProps, useToDo } from '../../context'
 import { customStorage } from '../../utils/customStorage'
 import * as S from './styles'
 
-interface ModalAddTaskProps {
-  isOpen: boolean
-  setModalAddTaskOpen: Dispatch<React.SetStateAction<boolean>>
-  showList: boolean
-  lists: ListsProps[]
-  tasks: TasksProps[]
-  setTasks: Dispatch<React.SetStateAction<TasksProps[]>>
-}
-
-export const ModalAddTask = ({ isOpen, setModalAddTaskOpen, showList, lists, tasks, setTasks }: ModalAddTaskProps) => {
+export const ModalAddTask = () => {
+  const { modalAddTaskOpen, setModalAddTaskOpen, tasks, setTasks, showList } = useToDo()
   const [showDropdownLists, setShowDropdownLists] = useState(false)
   const [titleTask, setTitleTask] = useState('')
   const [listSelectedNewTask, setListSelectedNewTask] = useState<ListsProps>()
@@ -36,7 +28,7 @@ export const ModalAddTask = ({ isOpen, setModalAddTaskOpen, showList, lists, tas
   }
 
   const handleCloseModalEsc = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (isOpen === true && e.key === 'Escape') handleModalClose()
+    if (modalAddTaskOpen === true && e.key === 'Escape') handleModalClose()
   }
 
   const handleToggleDropdown = (e: MouseEvent<HTMLButtonElement | HTMLDivElement>) => {
@@ -78,7 +70,7 @@ export const ModalAddTask = ({ isOpen, setModalAddTaskOpen, showList, lists, tas
 
   return (
     <Fragment>
-      {isOpen && (
+      {modalAddTaskOpen && (
         <S.Modal onClick={handleModalClose}>
           <S.Content showList={showList} onClick={handleClickContent} onKeyDown={handleCloseModalEsc}>
             <InputAndButton
@@ -96,7 +88,6 @@ export const ModalAddTask = ({ isOpen, setModalAddTaskOpen, showList, lists, tas
 
             {showDropdownLists && (
               <DropdownModalAddTask
-                lists={lists}
                 setListSelectedNewTask={setListSelectedNewTask}
                 setErrorButton={setErrorButton}
                 handleToggleDropdown={handleToggleDropdown}

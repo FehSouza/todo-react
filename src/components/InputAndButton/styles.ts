@@ -24,7 +24,8 @@ export const InputWrapper = styled.div<{ color?: Color; size?: number; error?: b
   }
 
   &:focus-within {
-    border: 0.0625rem solid ${({ theme, color, error }) => (error ? theme.colors.themeRed : theme.colors[color ?? 'text'])};
+    border: 0.0625rem solid
+      ${({ theme, color, error }) => (error ? theme.colors.themeRed : theme.colors[color ?? 'text'])};
   }
 `
 

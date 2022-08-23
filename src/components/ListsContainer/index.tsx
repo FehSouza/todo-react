@@ -1,39 +1,24 @@
-import { Dispatch, MouseEvent } from 'react'
+import { MouseEvent } from 'react'
 import { BsPlusLg } from 'react-icons/bs'
 import { RiMenuFoldLine } from 'react-icons/ri'
-import { INITIAL_LIST, ListsProps } from '../../pages'
+import { INITIAL_LIST, useToDo } from '../../context'
 import { customStorage } from '../../utils/customStorage'
 import { ItemListsContainer } from '../ItemListsContainer'
-import { TasksProps } from '../TasksContainer'
 import * as S from './styles'
 
-type ListsContainerProps = {
-  lists: ListsProps[]
-  setLists: Dispatch<React.SetStateAction<ListsProps[]>>
-  listSelected?: ListsProps
-  setListSelected: Dispatch<React.SetStateAction<ListsProps>>
-  showList: boolean
-  setShowList: Dispatch<React.SetStateAction<boolean>>
-  setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
-  tasks?: TasksProps[]
-  setTasks: Dispatch<React.SetStateAction<TasksProps[]>>
-  setShowDetails: Dispatch<React.SetStateAction<boolean>>
-  setClosing: Dispatch<React.SetStateAction<boolean>>
-}
+export const ListsContainer = () => {
+  const {
+    tasks,
+    setTasks,
+    lists,
+    setLists,
+    showList,
+    setShowList,
+    listSelected,
+    setListSelected,
+    setModalAddListOpen,
+  } = useToDo()
 
-export const ListsContainer = ({
-  lists,
-  setLists,
-  listSelected,
-  setListSelected,
-  showList,
-  setShowList,
-  setModalAddListOpen,
-  tasks,
-  setTasks,
-  setShowDetails,
-  setClosing,
-}: ListsContainerProps) => {
   const handleToggleList = () => setShowList(!showList)
 
   const handleOpenModal = () => setModalAddListOpen(true)
@@ -52,8 +37,8 @@ export const ListsContainer = ({
     customStorage.setItem('tasks', newTasks)
   }
 
-  const handleDeleteList = (event: MouseEvent<HTMLButtonElement>, id: number, name: string) => {
-    event.stopPropagation()
+  const handleDeleteList = (e: MouseEvent<HTMLButtonElement>, id: number, name: string) => {
+    e.stopPropagation()
 
     if (id === listSelected?.id) setListSelected(INITIAL_LIST)
 
@@ -81,13 +66,7 @@ export const ListsContainer = ({
               fixed={list.fixed}
               state={listSelected?.id === list.id}
               selectList={() => setListSelected(list)}
-              showList={showList}
-              deleteList={(event) => handleDeleteList(event, list.id, list.name)}
-              tasks={tasks}
-              setTasks={setTasks}
-              setClosing={setClosing}
-              setShowDetails={setShowDetails}
-              
+              deleteList={(e) => handleDeleteList(e, list.id, list.name)}
             />
           ))}
         </S.ListsContent>

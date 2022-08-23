@@ -1,20 +1,20 @@
 import { Dispatch, MouseEvent } from 'react'
-import { ListsProps } from '../../pages'
+import { ListsProps, useToDo } from '../../context'
 import * as S from './styles'
 
 interface DropdownModalAddTaskProps {
-  lists: ListsProps[]
   setListSelectedNewTask: Dispatch<React.SetStateAction<ListsProps | undefined>>
   setErrorButton: Dispatch<React.SetStateAction<boolean>>
   handleToggleDropdown: (e: MouseEvent<HTMLButtonElement | HTMLDivElement>) => void
 }
 
 export const DropdownModalAddTask = ({
-  lists,
   setListSelectedNewTask,
   setErrorButton,
   handleToggleDropdown,
 }: DropdownModalAddTaskProps) => {
+  const { lists } = useToDo()
+
   const handleChooseList = (e: MouseEvent<HTMLDivElement>, list: ListsProps) => {
     setListSelectedNewTask(list)
     setErrorButton(false)

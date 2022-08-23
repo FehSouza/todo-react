@@ -1,19 +1,11 @@
-import { ChangeEvent, Dispatch, Fragment, KeyboardEvent, useState } from 'react'
+import { ChangeEvent, Fragment, KeyboardEvent, useState } from 'react'
 import { FiSave } from 'react-icons/fi'
 import { TbLetterT } from 'react-icons/tb'
 import { InputAndButton } from '../../components'
-import { ListsProps } from '../../pages'
+import { useToDo } from '../../context'
 import { Color } from '../../styles/theme'
 import { customStorage } from '../../utils/customStorage'
 import * as S from './styles'
-
-interface ModalAddListProps {
-  isOpen: boolean
-  showList: boolean
-  setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
-  lists: ListsProps[]
-  setLists: Dispatch<React.SetStateAction<ListsProps[]>>
-}
 
 const MOCK_COLORS_THEME: Color[] = [
   'themeBlue',
@@ -25,7 +17,8 @@ const MOCK_COLORS_THEME: Color[] = [
   'themeRed',
 ]
 
-export const ModalAddList = ({ isOpen, setModalAddListOpen, showList, lists, setLists }: ModalAddListProps) => {
+export const ModalAddList = () => {
+  const { modalAddListOpen, setModalAddListOpen, lists, setLists, showList } = useToDo()
   const [nameList, setNameList] = useState('')
   const [colorThemeSelected, setColorThemeSelected] = useState<Color>('themeBlue')
   const [errorInput, setErrorInput] = useState(false)
@@ -37,8 +30,8 @@ export const ModalAddList = ({ isOpen, setModalAddListOpen, showList, lists, set
     setErrorInput(false)
   }
 
-  const handleCloseModalEsc = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (isOpen === true && event.key === 'Escape') handleCloseModal()
+  const handleCloseModalEsc = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (modalAddListOpen === true && e.key === 'Escape') handleCloseModal()
   }
 
   const handleTitleList = (e: ChangeEvent<HTMLInputElement>) => setNameList(e.target.value)
@@ -62,7 +55,7 @@ export const ModalAddList = ({ isOpen, setModalAddListOpen, showList, lists, set
 
   return (
     <Fragment>
-      {isOpen && (
+      {modalAddListOpen && (
         <S.Modal onClick={handleCloseModal}>
           <S.Content
             showList={showList}
