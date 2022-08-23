@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { ToDoListContainer } from '../../components'
-import { useToDo } from '../../context'
+import { TasksProps, useToDo } from '../../context'
 import { ModalAddList, ModalAddTask } from '../../models'
 import { customStorage } from '../../utils/customStorage'
 import * as S from './styles'
@@ -10,9 +10,15 @@ export const Home = () => {
 
   useEffect(() => {
     const listsLocalStorage = customStorage.getItem('lists')
-    const tasksLocalStorage = customStorage.getItem('tasks')
+    const tasksLocalStorage = customStorage.getItem('tasks') as TasksProps[]
     if (listsLocalStorage) setLists(listsLocalStorage)
-    if (tasksLocalStorage) setTasks(tasksLocalStorage)
+    if (tasksLocalStorage)
+      setTasks(
+        tasksLocalStorage.map((item) => ({
+          ...item,
+          date: new Date(item.date),
+        }))
+      )
   }, [setLists, setTasks])
 
   return (

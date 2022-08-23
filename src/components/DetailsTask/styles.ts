@@ -51,10 +51,28 @@ export const Title = styled.h2`
   }
 `
 
+export const DateWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+
+  & > svg {
+    fill: ${({ theme }) => theme.colors.textLight};
+    font-size: 1.125rem;
+    padding-bottom: 0.125rem;
+  }
+`
+
 export const Date = styled.span`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.textLight};
-  margin-top: 1rem;
+  margin-left: 0.75rem;
+  display: inline-block;
+  text-transform: lowercase;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 `
 
 export const DescriptionTitle = styled.h3`

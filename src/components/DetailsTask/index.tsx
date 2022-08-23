@@ -1,5 +1,6 @@
-import { AiOutlineDelete } from 'react-icons/ai'
+import { AiOutlineCalendar, AiOutlineDelete } from 'react-icons/ai'
 import { TasksProps, useToDo } from '../../context'
+import { formatDate } from '../../utils/formatDate'
 import * as S from './styles'
 
 interface DetailsTaskProps {
@@ -20,7 +21,10 @@ export const DetailsTask = ({ taskSelected }: DetailsTaskProps) => {
       <S.TaskInfosWrapper>
         <S.Title>{taskSelected?.task}</S.Title>
 
-        <S.Date>{String(taskSelected?.date)}</S.Date>
+        <S.DateWrapper>
+          <AiOutlineCalendar />
+          <S.Date>{formatDate(taskSelected?.date)}</S.Date>
+        </S.DateWrapper>
 
         <S.DescriptionTitle>Description</S.DescriptionTitle>
 

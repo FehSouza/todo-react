@@ -25,7 +25,15 @@ export const TasksContainer = ({ taskSelected, setTaskSelected }: TasksContainer
   const handleOpenModal = () => setModalAddTaskOpen(true)
 
   const handleShowDetails = (task: TasksProps) => {
-    if (showDetails) {
+    if (showDetails && task !== taskSelected) {
+      setClosing(true)
+
+      setTimeout(() => {
+        setTaskSelected(task)
+        setShowDetails(true)
+        setClosing(false)
+      }, 350)
+    } else if (showDetails) {
       setClosing(true)
     } else {
       setTaskSelected(task)
