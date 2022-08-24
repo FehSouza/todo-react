@@ -1,4 +1,3 @@
-import { Dispatch } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { FiSearch } from 'react-icons/fi'
 import { TasksProps, useToDo } from '../../context'
@@ -7,13 +6,18 @@ import { ItemTasksContainer } from '../ItemTasksContainer'
 import { WithoutItemTasksContainer } from '../WithoutItemTasksContainer'
 import * as S from './styles'
 
-type TasksContainerProps = {
-  taskSelected?: TasksProps
-  setTaskSelected: Dispatch<React.SetStateAction<TasksProps | undefined>>
-}
-
-export const TasksContainer = ({ taskSelected, setTaskSelected }: TasksContainerProps) => {
-  const { tasks, lists, listSelected, setModalAddTaskOpen, showDetails, setShowDetails, setClosing } = useToDo()
+export const TasksContainer = () => {
+  const {
+    tasks,
+    lists,
+    listSelected,
+    setModalAddTaskOpen,
+    showDetails,
+    setShowDetails,
+    setClosing,
+    taskSelected,
+    setTaskSelected,
+  } = useToDo()
 
   const newTasks = tasks?.filter((task) => {
     if (listSelected?.name === 'All') return true

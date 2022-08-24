@@ -14,7 +14,7 @@ type ItemListsContainerProps = {
 }
 
 export const ItemListsContainer = ({ text, color, fixed, state, selectList, deleteList }: ItemListsContainerProps) => {
-  const { tasks, setTasks, showList, setClosing, setShowDetails } = useToDo()
+  const { tasks, setTasks, showList, setClosing, setShowDetails, setTaskSelected } = useToDo()
 
   const onDragOver = (e: React.DragEvent<HTMLLIElement>) => e.preventDefault()
 
@@ -34,6 +34,7 @@ export const ItemListsContainer = ({ text, color, fixed, state, selectList, dele
   }
 
   const handleCloseDetails = () => {
+    setTaskSelected(undefined)
     selectList()
     setClosing(false)
     setShowDetails(false)

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Color } from '../../styles/theme'
 
-export const Container = styled.li<{ state: boolean }>`
+export const Container = styled.li<{ state: boolean; completed: boolean }>`
   width: calc(100% - 0.25rem);
   max-width: calc(100% - 0.25rem);
   height: 3.125rem;
@@ -13,6 +13,7 @@ export const Container = styled.li<{ state: boolean }>`
   padding: 1rem;
   box-sizing: border-box;
   transition-duration: 350ms;
+  position: relative;
 
   & + li {
     margin-top: 0.5rem;
@@ -25,6 +26,17 @@ export const Container = styled.li<{ state: boolean }>`
 
   &:focus {
     background-color: ${({ theme }) => theme.colors.focus};
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: calc(100% - 1.5rem);
+    height: 2px;
+    background-color: ${({ theme, completed }) => (completed ? theme.colors.textLight : 'transparent')};
+    position: absolute;
+    top: calc(50% - 0.0625rem);
+    left: 0.75rem;
   }
 `
 

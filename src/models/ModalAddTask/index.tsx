@@ -60,6 +60,7 @@ export const ModalAddTask = () => {
         id: Math.random() * 9,
         description: descriptionTask,
         date: new Date(),
+        completed: false,
       },
     ]
 

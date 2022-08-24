@@ -16,6 +16,7 @@ export interface TasksProps {
   id: number
   description: string
   date: Date
+  completed: boolean
 }
 
 interface ToDoContextProps {
@@ -35,6 +36,8 @@ interface ToDoContextProps {
   setShowDetails: Dispatch<React.SetStateAction<boolean>>
   closing: boolean
   setClosing: Dispatch<React.SetStateAction<boolean>>
+  taskSelected: TasksProps | undefined
+  setTaskSelected: Dispatch<React.SetStateAction<TasksProps | undefined>>
 }
 
 interface ToDoProviderProps {
@@ -52,6 +55,7 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
   const [modalAddTaskOpen, setModalAddTaskOpen] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
   const [closing, setClosing] = useState(false)
+  const [taskSelected, setTaskSelected] = useState<TasksProps>()
 
   return (
     <ToDoContext.Provider
@@ -72,6 +76,8 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
         setShowDetails,
         closing,
         setClosing,
+        taskSelected,
+        setTaskSelected,
       }}
     >
       {children}

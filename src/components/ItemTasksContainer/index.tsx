@@ -10,7 +10,7 @@ type ItemTasksContainerProps = {
 }
 
 export const ItemTasksContainer = ({ task, list, id, showDetails, state }: ItemTasksContainerProps) => {
-  const { lists } = useToDo()
+  const { lists, tasks } = useToDo()
 
   const listStructure = lists.find((item) => list === item.name)
 
@@ -19,6 +19,8 @@ export const ItemTasksContainer = ({ task, list, id, showDetails, state }: ItemT
   const onDragStart = (e: React.DragEvent<HTMLLIElement>, idTask: number) =>
     e.dataTransfer.setData('idTask', String(idTask))
 
+  const taskTeste = tasks.filter((task) => task.id === id)
+
   return (
     <S.Container
       draggable
@@ -26,6 +28,7 @@ export const ItemTasksContainer = ({ task, list, id, showDetails, state }: ItemT
       onDragStart={(e) => onDragStart(e, id)}
       onClick={showDetails}
       state={state}
+      completed={taskTeste[0].completed}
     >
       <S.Dot color={listStructure && listStructure.color} />
       <S.Task>{task}</S.Task>

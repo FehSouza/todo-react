@@ -112,18 +112,19 @@ export const ButtonsWrapper = styled.div`
   align-items: center;
 `
 
-export const ButtonState = styled.button`
+export const ButtonState = styled.button<{ completed?: boolean }>`
   width: calc(100% - 2.5rem - 1rem);
   max-width: 18.75rem;
   height: 2.5rem;
-  background: ${({ theme }) => theme.colors.success};
+  background: ${({ theme, completed }) => (completed ? theme.colors.textLight : theme.colors.success)};
   border-radius: 0.5rem;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.white};
   transition-duration: 350ms;
 
   &:hover {
-    background-color: ${({ theme }) => lighten(0.125, theme.colors.success)};
+    background-color: ${({ theme, completed }) =>
+      completed ? lighten(0.125, theme.colors.textLight) : lighten(0.125, theme.colors.success)};
   }
 `
 

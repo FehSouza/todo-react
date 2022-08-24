@@ -1,20 +1,48 @@
 import { AiOutlineCalendar, AiOutlineDelete } from 'react-icons/ai'
-import { TasksProps, useToDo } from '../../context'
+import { useToDo } from '../../context'
+import { customStorage } from '../../utils/customStorage'
 import { formatDate } from '../../utils/formatDate'
 import * as S from './styles'
 
-interface DetailsTaskProps {
-  taskSelected?: TasksProps
-}
-
-export const DetailsTask = ({ taskSelected }: DetailsTaskProps) => {
-  const { setShowDetails, closing, setClosing } = useToDo()
+export const DetailsTask = () => {
+  const { setShowDetails, closing, setClosing, tasks, setTasks, taskSelected, setTaskSelected } = useToDo()
 
   const handleClose = () => {
     if (!closing) return
     setClosing(false)
     setShowDetails(false)
   }
+
+  const handleToggleCompletedTask = () => {
+    if (!taskSelected) return
+
+    const toggleCompletedTask = {
+      ...taskSelected,
+      completed: !taskSelected.completed,
+    }
+
+    const newTasks = tasks.map((task) => {
+      if (task.id !== taskSelected?.id) return task
+      return toggleCompletedTask
+    })
+
+    setTaskSelected(toggleCompletedTask)
+    setTasks(newTasks)
+    customStorage.setItem('tasks', newTasks)
+  }
+
+  const handleDeleteTask = () => {
+    if (!taskSelected) return
+
+    const newTasks = tasks.filter((task) => taskSelected.id !== task.id)
+
+    setTaskSelected(undefined)
+    setTasks(newTasks)
+    customStorage.setItem('tasks', newTasks)
+    setClosing(true)
+  }
+
+  const textButtonState = taskSelected?.completed ? 'Undo' : 'Mischief managed'
 
   return (
     <S.Container closing={closing} onAnimationEnd={handleClose}>
@@ -32,9 +60,11 @@ export const DetailsTask = ({ taskSelected }: DetailsTaskProps) => {
       </S.TaskInfosWrapper>
 
       <S.ButtonsWrapper>
-        <S.ButtonState>Mischief managed</S.ButtonState>
+        <S.ButtonState onClick={handleToggleCompletedTask} completed={taskSelected?.completed}>
+          {textButtonState}
+        </S.ButtonState>
 
-        <S.Delete>
+        <S.Delete onClick={handleDeleteTask}>
           <AiOutlineDelete />
         </S.Delete>
       </S.ButtonsWrapper>
