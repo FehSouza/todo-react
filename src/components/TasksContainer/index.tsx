@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { FiSearch } from 'react-icons/fi'
 import { TasksProps, useToDo } from '../../context'
@@ -17,6 +18,8 @@ export const TasksContainer = () => {
     setClosing,
     taskSelected,
     setTaskSelected,
+    valueSearch,
+    setValueSearch,
   } = useToDo()
 
   const newTasks = tasks?.filter((task) => {
@@ -46,6 +49,10 @@ export const TasksContainer = () => {
     }
   }
 
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => setValueSearch(e.target.value)
+
+  const filterSearch = newTasks.filter((task) => task.task.toLowerCase().includes(valueSearch.toLowerCase()))
+
   return (
     <S.Container>
       <S.Title>{listSelected?.name ?? valueTitle}</S.Title>
@@ -57,12 +64,14 @@ export const TasksContainer = () => {
         color={listSelected?.color}
         size={1.125}
         onClickButton={handleOpenModal}
+        onChangeInput={(e) => handleSearch(e)}
+        valueInput={valueSearch}
       />
 
       <S.TasksContent>
-        {newTasks?.length === 0 && <WithoutItemTasksContainer />}
+        {filterSearch?.length === 0 && <WithoutItemTasksContainer />}
 
-        {newTasks?.map((task) => (
+        {filterSearch?.map((task) => (
           <ItemTasksContainer
             key={task.id}
             task={task.task}

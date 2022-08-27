@@ -38,6 +38,8 @@ interface ToDoContextProps {
   setClosing: Dispatch<React.SetStateAction<boolean>>
   taskSelected: TasksProps | undefined
   setTaskSelected: Dispatch<React.SetStateAction<TasksProps | undefined>>
+  valueSearch: string
+  setValueSearch: React.Dispatch<React.SetStateAction<string>>
 }
 
 interface ToDoProviderProps {
@@ -56,6 +58,7 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
   const [showDetails, setShowDetails] = useState(false)
   const [closing, setClosing] = useState(false)
   const [taskSelected, setTaskSelected] = useState<TasksProps>()
+  const [valueSearch, setValueSearch] = useState('')
 
   return (
     <ToDoContext.Provider
@@ -78,6 +81,8 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
         setClosing,
         taskSelected,
         setTaskSelected,
+        valueSearch,
+        setValueSearch,
       }}
     >
       {children}
