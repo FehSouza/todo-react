@@ -32,6 +32,8 @@ interface ToDoContextProps {
   setModalAddListOpen: Dispatch<React.SetStateAction<boolean>>
   modalAddTaskOpen: boolean
   setModalAddTaskOpen: Dispatch<React.SetStateAction<boolean>>
+  modalDeleteList: boolean
+  setModalDeleteList: Dispatch<React.SetStateAction<boolean>>
   showDetails: boolean
   setShowDetails: Dispatch<React.SetStateAction<boolean>>
   closing: boolean
@@ -40,6 +42,18 @@ interface ToDoContextProps {
   setTaskSelected: Dispatch<React.SetStateAction<TasksProps | undefined>>
   valueSearch: string
   setValueSearch: React.Dispatch<React.SetStateAction<string>>
+  infoDeleteList: {
+    id: number
+    name: string
+  }
+  setInfoDeleteList: React.Dispatch<
+    React.SetStateAction<{
+      id: number
+      name: string
+    }>
+  >
+  listHasTasks: boolean
+  setListHasTasks: Dispatch<React.SetStateAction<boolean>>
 }
 
 interface ToDoProviderProps {
@@ -55,10 +69,13 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
   const [tasks, setTasks] = useState<TasksProps[]>([])
   const [modalAddListOpen, setModalAddListOpen] = useState(false)
   const [modalAddTaskOpen, setModalAddTaskOpen] = useState(false)
+  const [modalDeleteList, setModalDeleteList] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
   const [closing, setClosing] = useState(false)
   const [taskSelected, setTaskSelected] = useState<TasksProps>()
   const [valueSearch, setValueSearch] = useState('')
+  const [infoDeleteList, setInfoDeleteList] = useState({ id: 0, name: '' })
+  const [listHasTasks, setListHasTasks] = useState(false)
 
   return (
     <ToDoContext.Provider
@@ -75,6 +92,8 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
         setModalAddListOpen,
         modalAddTaskOpen,
         setModalAddTaskOpen,
+        modalDeleteList,
+        setModalDeleteList,
         showDetails,
         setShowDetails,
         closing,
@@ -83,6 +102,10 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
         setTaskSelected,
         valueSearch,
         setValueSearch,
+        infoDeleteList,
+        setInfoDeleteList,
+        listHasTasks,
+        setListHasTasks,
       }}
     >
       {children}

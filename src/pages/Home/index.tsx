@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { ToDoListContainer } from '../../components'
 import { TasksProps, useToDo } from '../../context'
-import { ModalAddList, ModalAddTask } from '../../models'
+import { ModalAddList, ModalAddTask, ModalDeleteList } from '../../models'
 import { customStorage } from '../../utils/customStorage'
 import * as S from './styles'
 
@@ -26,6 +26,7 @@ export const Home = () => {
       <ToDoListContainer />
       <ModalAddList />
       <ModalAddTask />
+      <ModalDeleteList />
     </S.Container>
   )
 }
