@@ -7,7 +7,7 @@ import { customStorage } from '../../utils/customStorage'
 import * as S from './styles'
 
 export const ModalAddTask = () => {
-  const { modalAddTaskOpen, setModalAddTaskOpen, tasks, setTasks, showList } = useToDo()
+  const { modalAddTaskOpen, setModalAddTaskOpen, tasks, setTasks, showList, listSelected } = useToDo()
   const [showDropdownLists, setShowDropdownLists] = useState(false)
   const [titleTask, setTitleTask] = useState('')
   const [listSelectedNewTask, setListSelectedNewTask] = useState<ListsProps>()
@@ -48,15 +48,15 @@ export const ModalAddTask = () => {
   const handleCreateTask = () => {
     titleTask.length > 3 ? setErrorInput(false) : setErrorInput(true)
     descriptionTask.length > 3 ? setErrorTextArea(false) : setErrorTextArea(true)
-    listSelectedNewTask ? setErrorButton(false) : setErrorButton(true)
+    buttonListText !== 'Select list' ? setErrorButton(false) : setErrorButton(true)
 
-    if (titleTask.length <= 3 || !listSelectedNewTask || descriptionTask.length <= 3) return
+    if (titleTask.length <= 3 || buttonListText === 'Select list' || descriptionTask.length <= 3) return
 
     const newTask = [
       ...tasks,
       {
         task: titleTask,
-        list: listSelectedNewTask.name,
+        list: buttonListText,
         id: Math.random() * 9,
         description: descriptionTask,
         date: new Date(),
@@ -69,6 +69,14 @@ export const ModalAddTask = () => {
     handleModalClose()
   }
 
+  let buttonListText = 'Select list'
+
+  if (listSelectedNewTask) {
+    buttonListText = listSelectedNewTask?.name
+  } else if (listSelected.name !== 'All') {
+    buttonListText = listSelected.name
+  }
+
   return (
     <Fragment>
       {modalAddTaskOpen && (
@@ -79,7 +87,7 @@ export const ModalAddTask = () => {
               inputPlaceholder="Title"
               onChangeInput={handleTitleTask}
               errorInput={errorInput}
-              buttonText={listSelectedNewTask ? listSelectedNewTask.name : 'Select list'}
+              buttonText={buttonListText}
               onClickButton={handleToggleDropdown}
               errorButton={errorButton}
               size={1.25}

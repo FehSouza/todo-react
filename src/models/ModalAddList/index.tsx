@@ -47,6 +47,7 @@ export const ModalAddList = () => {
     }
 
     const newList = [...lists, { name: nameList, id: Math.random() * 9, color: colorThemeSelected }]
+    
     setErrorInput(false)
     setLists(newList)
     handleCloseModal()
