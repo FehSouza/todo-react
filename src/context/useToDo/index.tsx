@@ -7,7 +7,7 @@ export interface ListsProps {
   name: string
   id: number
   color: Color
-  fixed?: boolean
+  fixed: boolean
 }
 
 export interface TasksProps {

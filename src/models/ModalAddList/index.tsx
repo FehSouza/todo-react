@@ -4,7 +4,7 @@ import { TbLetterT } from 'react-icons/tb'
 import { InputAndButton } from '../../components'
 import { useToDo } from '../../context'
 import { Color } from '../../styles/theme'
-import { customStorage } from '../../utils/customStorage'
+import { ordination } from '../../utils/ordination'
 import * as S from './styles'
 
 const MOCK_COLORS_THEME: Color[] = [
@@ -46,23 +46,11 @@ export const ModalAddList = () => {
       return
     }
 
-    const newList = [...lists, { name: nameList, id: Math.random() * 9, color: colorThemeSelected }]
-
-    const listAll = newList.filter((list) => list.name === 'All')
-    const listWithoutAll = newList.filter((list) => list.name !== 'All')
-
-    listWithoutAll.sort((a, b) => {
-      if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
-      if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
-      return 0
-    })
-
-    const orderedList = [...listAll, ...listWithoutAll]
+    const newList = [...lists, { name: nameList, id: Math.random() * 9, color: colorThemeSelected, fixed: false }]
 
     setErrorInput(false)
-    setLists(orderedList)
+    ordination.nameASC({ listsToSort: newList, updateLists: setLists })
     handleCloseModal()
-    customStorage.setItem('lists', orderedList)
   }
 
   return (

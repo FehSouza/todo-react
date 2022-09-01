@@ -2,12 +2,14 @@ import { MouseEvent } from 'react'
 import { BsPlusLg } from 'react-icons/bs'
 import { RiMenuFoldLine } from 'react-icons/ri'
 import { useToDo } from '../../context'
+import { ordination } from '../../utils/ordination'
 import { ItemListsContainer } from '../ItemListsContainer'
 import * as S from './styles'
 
 export const ListsContainer = () => {
   const {
     lists,
+    setLists,
     showList,
     setShowList,
     listSelected,
@@ -33,6 +35,17 @@ export const ListsContainer = () => {
     setListHasTasks(listHasTasks)
   }
 
+  const handleFixedList = (e: MouseEvent<HTMLButtonElement>, id: number) => {
+    e.stopPropagation()
+
+    const newList = lists.map((list) => {
+      if (list.id === id) return { ...list, fixed: !list.fixed }
+      return list
+    })
+
+    ordination.nameASC({ listsToSort: newList, updateLists: setLists })
+  }
+
   return (
     <S.Container showList={showList}>
       <S.ContainerTitle onClick={handleToggleList}>
@@ -51,6 +64,7 @@ export const ListsContainer = () => {
               state={listSelected?.id === list.id}
               selectList={() => setListSelected(list)}
               deleteList={(e) => handleDeleteList(e, list.id, list.name)}
+              fixedList={(e) => handleFixedList(e, list.id)}
             />
           ))}
         </S.ListsContent>
