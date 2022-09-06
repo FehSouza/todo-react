@@ -2,9 +2,9 @@ import { MouseEvent } from 'react'
 import { BsPlusLg } from 'react-icons/bs'
 import { RiMenuFoldLine } from 'react-icons/ri'
 import { useToDo } from '../../context'
-import { customStorage } from '../../utils/customStorage'
 import { ordination } from '../../utils/ordination'
 import { ItemListsContainer } from '../ItemListsContainer'
+import { Ordination } from '../Ordination'
 import * as S from './styles'
 
 export const ListsContainer = () => {
@@ -21,7 +21,6 @@ export const ListsContainer = () => {
     tasks,
     setListHasTasks,
     typeOrdination,
-    setTypeOrdination,
   } = useToDo()
 
   const handleToggleList = () => setShowList(!showList)
@@ -50,20 +49,6 @@ export const ListsContainer = () => {
     typeOrdination === 'ASC' ? ordination.ASC(paramOrdination) : ordination.DESC(paramOrdination)
   }
 
-  const toggleSwitch = () => {
-    const paramOrdination = { listsToSort: lists, updateLists: setLists }
-
-    if (typeOrdination === 'ASC') {
-      setTypeOrdination('DESC')
-      customStorage.setItem('typeOrdination', 'DESC')
-      ordination.DESC(paramOrdination)
-    } else {
-      setTypeOrdination('ASC')
-      customStorage.setItem('typeOrdination', 'ASC')
-      ordination.ASC(paramOrdination)
-    }
-  }
-
   return (
     <S.Container showList={showList}>
       <S.ContainerTitle onClick={handleToggleList}>
@@ -88,21 +73,7 @@ export const ListsContainer = () => {
         </S.ListsContent>
       )}
 
-      {showList && (
-        <S.OrdinationWrapper>
-          <S.OrdinationTitle>Sort lists:</S.OrdinationTitle>
-
-          <S.OrdinationContent>
-            <S.Option onClick={toggleSwitch}>A to Z</S.Option>
-
-            <S.SwitchWrapper onClick={toggleSwitch}>
-              <S.SwitchBox typeOrdination={typeOrdination}></S.SwitchBox>
-            </S.SwitchWrapper>
-
-            <S.Option onClick={toggleSwitch}>Z to A</S.Option>
-          </S.OrdinationContent>
-        </S.OrdinationWrapper>
-      )}
+      {showList && <Ordination />}
 
       <S.ButtonAddList onClick={handleOpenModal}>
         <BsPlusLg />

@@ -22,6 +22,7 @@ export const Container = styled.li<{ color: Color; state?: boolean; showList?: b
   align-items: center;
   transition-duration: 350ms;
   color: ${({ theme, state, color }) => (state ? theme.colors[color] : theme.colors.text)};
+  user-select: none;
 
   & + li {
     margin-top: 0.5rem;
