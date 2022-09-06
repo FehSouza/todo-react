@@ -18,7 +18,7 @@ const MOCK_COLORS_THEME: Color[] = [
 ]
 
 export const ModalAddList = () => {
-  const { modalAddListOpen, setModalAddListOpen, lists, setLists, showList } = useToDo()
+  const { modalAddListOpen, setModalAddListOpen, lists, setLists, showList, typeOrdination } = useToDo()
   const [nameList, setNameList] = useState('')
   const [colorThemeSelected, setColorThemeSelected] = useState<Color>('themeBlue')
   const [errorInput, setErrorInput] = useState(false)
@@ -49,7 +49,10 @@ export const ModalAddList = () => {
     const newList = [...lists, { name: nameList, id: Math.random() * 9, color: colorThemeSelected, fixed: false }]
 
     setErrorInput(false)
-    ordination.nameASC({ listsToSort: newList, updateLists: setLists })
+
+    const paramOrdination = { listsToSort: newList, updateLists: setLists }
+    typeOrdination === 'ASC' ? ordination.ASC(paramOrdination) : ordination.DESC(paramOrdination)
+
     handleCloseModal()
   }
 

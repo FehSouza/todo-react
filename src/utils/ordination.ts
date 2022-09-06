@@ -34,11 +34,11 @@ export class Ordination {
     updateLists(orderedList)
   }
 
-  nameASC({ listsToSort, updateLists }: ordinationProps) {
+  ASC({ listsToSort, updateLists }: ordinationProps) {
     this.alphabeticalOrder({ listsToSort, updateLists, type: 'ASC' })
   }
 
-  NameDesc({ listsToSort, updateLists }: ordinationProps) {
+  DESC({ listsToSort, updateLists }: ordinationProps) {
     this.alphabeticalOrder({ listsToSort, updateLists, type: 'DESC' })
   }
 }

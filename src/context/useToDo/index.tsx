@@ -54,6 +54,8 @@ interface ToDoContextProps {
   >
   listHasTasks: boolean
   setListHasTasks: Dispatch<React.SetStateAction<boolean>>
+  typeOrdination: string
+  setTypeOrdination: Dispatch<React.SetStateAction<string>>
 }
 
 interface ToDoProviderProps {
@@ -76,6 +78,7 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
   const [valueSearch, setValueSearch] = useState('')
   const [infoDeleteList, setInfoDeleteList] = useState({ id: 0, name: '' })
   const [listHasTasks, setListHasTasks] = useState(false)
+  const [typeOrdination, setTypeOrdination] = useState('ASC')
 
   return (
     <ToDoContext.Provider
@@ -106,6 +109,8 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
         setInfoDeleteList,
         listHasTasks,
         setListHasTasks,
+        typeOrdination,
+        setTypeOrdination,
       }}
     >
       {children}
