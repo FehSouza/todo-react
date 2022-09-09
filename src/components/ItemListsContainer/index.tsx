@@ -24,7 +24,8 @@ export const ItemListsContainer = ({
   deleteList,
   fixedList,
 }: ItemListsContainerProps) => {
-  const { tasks, setTasks, showList, setClosing, setShowDetails, setTaskSelected, setValueSearch } = useToDo()
+  const { tasks, setTasks, listSelected, showList, setClosing, setShowDetails, setTaskSelected, setValueSearch } =
+    useToDo()
 
   const onDragOver = (e: React.DragEvent<HTMLLIElement>) => e.preventDefault()
 
@@ -39,8 +40,10 @@ export const ItemListsContainer = ({
     })
 
     if (!newTasks) return
-
     setTasks(newTasks)
+
+    if (listName === listSelected.name) return
+    setShowDetails(false)
   }
 
   const handleToggleList = () => {
@@ -65,7 +68,7 @@ export const ItemListsContainer = ({
     >
       <S.Dot />
 
-      {showList && <S.NameList>{text}</S.NameList>}
+      {showList && <S.NameList fixed={fixed}>{text}</S.NameList>}
 
       {!fixed && showList && (
         <S.Delete onClick={deleteList} state={state} color={color}>

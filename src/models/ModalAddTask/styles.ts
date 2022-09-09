@@ -2,7 +2,7 @@ import { lighten } from 'polished'
 import styled from 'styled-components'
 
 export const Modal = styled.div`
-  background-color: ${({ theme }) => theme.colors.white}4D;
+  background-color: ${({ theme }) => theme.colors.white}8D;
   position: fixed;
   top: 0;
   left: 0;

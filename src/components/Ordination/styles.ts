@@ -19,12 +19,22 @@ export const OrdinationContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 
   & button:nth-child(3) {
     text-align: end;
-    padding-left: 0.5rem;
+    padding-left: 0.25rem;
     padding-right: 0rem;
+
+    @media (max-width: 1325px) {
+      width: 100%;
+      padding: 0;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 1325px) {
+    flex-direction: column;
   }
 `
 
@@ -35,6 +45,12 @@ export const Option = styled.button`
   color: ${({ theme }) => theme.colors.text};
   line-height: 1rem;
   cursor: pointer;
+
+  @media (max-width: 1325px) {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+  }
 `
 
 export const SwitchWrapper = styled.div`
@@ -43,6 +59,13 @@ export const SwitchWrapper = styled.div`
   border: ${({ theme }) => `0.0625rem solid ${theme.colors.themeBlue}`};
   border-radius: 1rem;
   cursor: pointer;
+
+  @media (max-width: 1325px) {
+    margin: 0.75rem;
+    transform: rotate(90deg);
+    width: 1.5rem;
+    height: 0.875rem;
+  }
 `
 
 export const SwitchBox = styled.div<{ typeOrdination: string }>`
@@ -53,4 +76,12 @@ export const SwitchBox = styled.div<{ typeOrdination: string }>`
   margin-left: ${({ typeOrdination }) => (typeOrdination === 'ASC' ? '0.125rem' : 'calc(0.125rem + 1rem)')};
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors.themeBlue};
+
+  @media (max-width: 1325px) {
+    width: calc(0.875rem - 0.125rem);
+    height: calc(0.875rem - 0.125rem);
+    margin: 0.0625rem;
+    margin-left: ${({ typeOrdination }) =>
+      typeOrdination === 'ASC' ? '0.0625rem' : 'calc(1.5rem - (0.875rem - 0.125rem) - 0.0625rem)'};
+  }
 `

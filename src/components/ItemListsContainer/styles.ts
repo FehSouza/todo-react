@@ -38,15 +38,21 @@ export const Container = styled.li<{ color: Color; state?: boolean; showList?: b
     color: ${({ theme, color }) => theme.colors[color]};
 
     & button {
+      display: flex;
+
       opacity: 1;
+    }
+
+    span {
+      width: ${({ fixed }) => (fixed ? ' calc(100% - 4.5rem)' : ' calc(100% - 6.25rem)')};
     }
   }
 `
 
-export const NameList = styled.span`
+export const NameList = styled.span<{ fixed?: boolean }>`
   color: inherit;
   display: inline-block;
-  width: calc(100% - 2.25rem - 2rem - 2rem);
+  width: ${({ fixed }) => (fixed ? ' calc(100% - 4.5rem)' : ' calc(100% - 3rem)')};
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -58,7 +64,7 @@ export const NameList = styled.span`
 `
 
 export const FixedButton = styled.button<{ state: boolean; fixed?: boolean; color: Color }>`
-  display: flex;
+  display: ${({ fixed }) => (fixed ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
   width: 2rem;
@@ -73,7 +79,7 @@ export const FixedButton = styled.button<{ state: boolean; fixed?: boolean; colo
 `
 
 export const Delete = styled.button<{ state?: boolean; color: Color }>`
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 2rem;

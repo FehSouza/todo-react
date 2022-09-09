@@ -1,5 +1,6 @@
 import { lighten } from 'polished'
 import styled, { css } from 'styled-components'
+import { Color } from '../../styles/theme'
 
 export const Container = styled.div<{ closing: boolean }>`
   flex: 1;
@@ -37,7 +38,7 @@ export const Container = styled.div<{ closing: boolean }>`
 export const TaskInfosWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100% - 2.5rem);
+  height: calc(100% - 6rem);
 `
 
 export const Title = styled.h2`
@@ -106,17 +107,49 @@ export const Description = styled.p`
 `
 
 export const ButtonsWrapper = styled.div`
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+export const ButtonList = styled.button<{ color?: Color }>`
+  width: calc(100% - 2.5rem - 1rem);
+  max-width: 18.75rem;
+  height: 2.5rem;
+  background-color: ${({ theme, color }) => (color ? theme.colors[color] : theme.colors.themeBlue)};
+  border-radius: 0.5rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.white};
+  transition-duration: 350ms;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0 1rem;
+  text-transform: lowercase;
+  display: inline-block;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  &:hover {
+    background-color: ${({ theme, color }) =>
+      color ? lighten(0.125, theme.colors[color]) : lighten(0.125, theme.colors.themeBlue)};
+  }
+`
+
+export const ButtonsWrapperInfo = styled.div`
   height: 2.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `
 
 export const ButtonState = styled.button<{ completed?: boolean }>`
   width: calc(100% - 2.5rem - 1rem);
   max-width: 18.75rem;
   height: 2.5rem;
-  background: ${({ theme, completed }) => (completed ? theme.colors.textLight : theme.colors.success)};
+  background-color: ${({ theme, completed }) => (completed ? theme.colors.textLight : theme.colors.success)};
   border-radius: 0.5rem;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.white};
@@ -131,7 +164,7 @@ export const ButtonState = styled.button<{ completed?: boolean }>`
 export const Delete = styled.button`
   width: 2.5rem;
   height: 2.5rem;
-  background: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 0.5rem;
   color: ${({ theme }) => theme.colors.delete};
   transition-duration: 350ms;

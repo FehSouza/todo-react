@@ -34,6 +34,8 @@ interface ToDoContextProps {
   setModalAddTaskOpen: Dispatch<React.SetStateAction<boolean>>
   modalDeleteList: boolean
   setModalDeleteList: Dispatch<React.SetStateAction<boolean>>
+  modalUpdateList: boolean
+  setModalUpdateList: Dispatch<React.SetStateAction<boolean>>
   showDetails: boolean
   setShowDetails: Dispatch<React.SetStateAction<boolean>>
   closing: boolean
@@ -72,6 +74,7 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
   const [modalAddListOpen, setModalAddListOpen] = useState(false)
   const [modalAddTaskOpen, setModalAddTaskOpen] = useState(false)
   const [modalDeleteList, setModalDeleteList] = useState(false)
+  const [modalUpdateList, setModalUpdateList] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
   const [closing, setClosing] = useState(false)
   const [taskSelected, setTaskSelected] = useState<TasksProps>()
@@ -97,6 +100,8 @@ export const ToDoProvider = ({ children }: ToDoProviderProps) => {
         setModalAddTaskOpen,
         modalDeleteList,
         setModalDeleteList,
+        modalUpdateList,
+        setModalUpdateList,
         showDetails,
         setShowDetails,
         closing,
