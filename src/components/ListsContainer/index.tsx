@@ -75,7 +75,7 @@ export const ListsContainer = () => {
 
       {showList && <Ordination />}
 
-      <S.ButtonAddList onClick={handleOpenModal}>
+      <S.ButtonAddList showList={showList} onClick={handleOpenModal}>
         <BsPlusLg />
         {showList && 'Add list'}
       </S.ButtonAddList>

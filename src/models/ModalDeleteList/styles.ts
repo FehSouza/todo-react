@@ -29,6 +29,11 @@ export const Container = styled.div<{ hasThreeButtons: boolean }>`
   align-items: center;
   justify-content: space-around;
 
+  @media (max-width: 1024px) and (min-width: 769px) {
+    width: calc((100% - 40%) / 2);
+    left: calc((100% - ((100% - 40%) / 2) - 50% + 2rem) / 2);
+  }
+
   @media (max-width: 768px) {
     width: calc((100% - 30%) / 2);
     left: calc((100% - ((100% - 30%) / 2) - 50% + 2rem) / 2);

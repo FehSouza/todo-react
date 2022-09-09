@@ -33,8 +33,11 @@ export const Content = styled.div<{ showList: boolean }>`
     height: ${({ showList }) => (showList ? '13rem' : '10rem')};
   }
 
-  @media (max-width: 941px) {
-    height: 13rem;
+  @media (max-width: 1024px) and (min-width: 769px) {
+    width: calc(50% - 4rem);
+    left: 0;
+    margin: 3rem;
+    height: 10rem;
   }
 `
 

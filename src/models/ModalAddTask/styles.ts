@@ -30,6 +30,12 @@ export const Content = styled.div<{ showList: boolean }>`
   outline: none;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    width: calc(50% - 4rem);
+    left: 0;
+    margin: 3rem;
+  }
 `
 
 export const Description = styled.textarea<{ errorTextArea?: boolean }>`

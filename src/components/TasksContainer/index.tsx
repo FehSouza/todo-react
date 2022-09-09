@@ -59,7 +59,7 @@ export const TasksContainer = () => {
 
       <InputAndButton
         inputIconLeft={FiSearch}
-        inputPlaceholder="Enter your search here…"
+        inputPlaceholder="Enter your search here"
         buttonIconRight={AiOutlinePlus}
         color={listSelected?.color}
         size={1.125}

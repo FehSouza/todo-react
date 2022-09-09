@@ -21,6 +21,10 @@ export const InputWrapper = styled.div<{ color?: Color; size?: number; error?: b
     color: ${({ theme }) => theme.colors.textLight};
     font-size: ${({ size }) => (size ? `${size}rem` : '1rem')};
     font-weight: 600;
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      display: none;
+    }
   }
 
   &:focus-within {
@@ -39,6 +43,10 @@ export const Input = styled.input`
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.textLight};
+  }
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    padding-left: 0.75rem;
   }
 `
 
@@ -79,5 +87,9 @@ export const Button = styled.button<{ color?: Color; size?: number; errorButton?
       transform: rotate(360deg);
       transition-duration: 750ms;
     }
+  }
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    margin-left: 0.75rem;
   }
 `

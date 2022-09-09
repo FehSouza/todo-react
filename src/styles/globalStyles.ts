@@ -65,12 +65,6 @@ export const GlobalStyles = css`
 
   @media (max-width: 1024px) {
     html {
-      font-size: 93.75%;
-    }
-  }
-
-  @media (max-width: 768px) {
-    html {
       font-size: 87.5%;
     }
   }

@@ -70,7 +70,7 @@ export const WithoutItemListsContainer = styled.span`
   line-height: 1rem;
 `
 
-export const ButtonAddList = styled.button`
+export const ButtonAddList = styled.button<{ showList: boolean }>`
   width: fit-content;
   height: 2.5rem;
   min-height: 2.5rem;
@@ -95,5 +95,10 @@ export const ButtonAddList = styled.button`
       transform: rotate(180deg);
       transition-duration: 350ms;
     }
+  }
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    gap: 0.5rem;
+    padding-left: ${({ showList }) => (showList ? '0' : '0.9375rem')};
   }
 `
