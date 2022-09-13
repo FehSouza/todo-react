@@ -64,7 +64,7 @@ export const ListsWrapper = styled.div`
   }
 `
 
-export const listButton = styled.button`
+export const ListButton = styled.button`
   width: 100%;
   height: 2.5rem;
   min-height: 2.5rem;

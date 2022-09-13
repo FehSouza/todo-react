@@ -35,6 +35,8 @@ export const ModalUpdateList = () => {
     setShowDetails(false)
   }
 
+  const newLists = lists.filter((list) => list.name !== taskSelected?.list)
+
   return (
     <Fragment>
       {modalUpdateList && (
@@ -43,10 +45,10 @@ export const ModalUpdateList = () => {
             <S.Title>Select the new list</S.Title>
 
             <S.ListsWrapper>
-              {lists.map((list) => (
-                <S.listButton key={list.id} onClick={() => handleUpdateList(list.name)}>
+              {newLists.map((list) => (
+                <S.ListButton key={list.id} onClick={() => handleUpdateList(list.name)}>
                   {list.name}
-                </S.listButton>
+                </S.ListButton>
               ))}
             </S.ListsWrapper>
           </S.Container>

@@ -1,6 +1,5 @@
 import { lighten } from 'polished'
 import styled, { css } from 'styled-components'
-import { Color } from '../../styles/theme'
 
 export const Container = styled.div<{ closing: boolean }>`
   flex: 1;
@@ -9,6 +8,7 @@ export const Container = styled.div<{ closing: boolean }>`
   box-shadow: 0.25rem 0 0.375rem ${({ theme }) => theme.colors.shadow};
   border-radius: 0 0.5rem 0.5rem 0;
   padding: 1rem;
+  position: relative;
 
   @keyframes grow {
     from {
@@ -38,7 +38,7 @@ export const Container = styled.div<{ closing: boolean }>`
 export const TaskInfosWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100% - 6rem);
+  height: calc(100% - 2.5rem);
 `
 
 export const Title = styled.h2`
@@ -107,39 +107,6 @@ export const Description = styled.p`
 `
 
 export const ButtonsWrapper = styled.div`
-  height: 6rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
-
-export const ButtonList = styled.button<{ color?: Color }>`
-  width: calc(100% - 2.5rem - 1rem);
-  max-width: 18.75rem;
-  height: 2.5rem;
-  background-color: ${({ theme, color }) => (color ? theme.colors[color] : theme.colors.themeBlue)};
-  border-radius: 0.5rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.colors.white};
-  transition-duration: 350ms;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 0 1rem;
-  text-transform: lowercase;
-  display: inline-block;
-
-  &::first-letter {
-    text-transform: uppercase;
-  }
-
-  &:hover {
-    background-color: ${({ theme, color }) =>
-      color ? lighten(0.125, theme.colors[color]) : lighten(0.125, theme.colors.themeBlue)};
-  }
-`
-
-export const ButtonsWrapperInfo = styled.div`
   height: 2.5rem;
   display: flex;
   justify-content: space-between;
@@ -171,5 +138,90 @@ export const Delete = styled.button`
 
   &:hover {
     color: ${({ theme }) => lighten(0.125, theme.colors.delete)};
+  }
+`
+
+export const ButtonClose = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    font-size: 1.5rem;
+    transition-duration: 350ms;
+    fill: ${({ theme }) => theme.colors.text};
+  }
+
+  &:hover {
+    & svg {
+      fill: ${({ theme }) => theme.colors.themeBlue};
+    }
+  }
+`
+
+export const ButtonTools = styled.button`
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem;
+
+  & svg {
+    font-size: 1rem;
+    transition-duration: 350ms;
+    fill: ${({ theme }) => theme.colors.text};
+  }
+
+  &:hover {
+    & svg {
+      fill: ${({ theme }) => theme.colors.themeBlue};
+    }
+  }
+`
+
+export const ContainerTools = styled.div<{ showDropdown: boolean }>`
+  position: absolute;
+  top: 4.25rem;
+  right: 0.5rem;
+  z-index: 2;
+  background-color: transparent;
+  border-radius: none;
+  display: ${({ showDropdown }) => (showDropdown ? 'flex' : 'none')};
+`
+export const ContentTools = styled.div`
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => `-0 0 0.5rem ${theme.colors.shadow}`};
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+`
+
+export const ButtonUpdateList = styled.button`
+  height: 2.5rem;
+  background-color: ${({ theme }) => theme.colors.focus};
+  border: none;
+  border-radius: 0.5rem;
+  transition-duration: 350ms;
+  color: ${({ theme }) => theme.colors.text};
+  margin: 0.5rem 0;
+  padding: 0 1rem;
+
+  &:hover {
+    background-color: ${({ theme }) => lighten(-0.04, theme.colors.focus)};
   }
 `
