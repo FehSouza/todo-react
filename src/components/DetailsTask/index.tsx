@@ -8,8 +8,17 @@ import { formatDate } from '../../utils/formatDate'
 import * as S from './styles'
 
 export const DetailsTask = () => {
-  const { setShowDetails, closing, setClosing, tasks, setTasks, taskSelected, setTaskSelected, setModalUpdateList } =
-    useToDo()
+  const {
+    setShowDetails,
+    closing,
+    setClosing,
+    tasks,
+    setTasks,
+    taskSelected,
+    setTaskSelected,
+    setModalUpdateList,
+    lists,
+  } = useToDo()
 
   const [showDropdown, setShowDropdown] = useState(false)
 
@@ -90,7 +99,8 @@ export const DetailsTask = () => {
 
       <S.ContainerTools showDropdown={showDropdown} onMouseMove={handleShowDropdown} onMouseOut={handleHideDropdown}>
         <S.ContentTools>
-          <S.ButtonUpdateList onClick={handleOpenModal}>Update the list</S.ButtonUpdateList>
+          {lists.length > 1 && <S.ButtonOption onClick={handleOpenModal}>Update the list</S.ButtonOption>}
+          <S.ButtonOption>Edit the task</S.ButtonOption>
         </S.ContentTools>
       </S.ContainerTools>
     </S.Container>

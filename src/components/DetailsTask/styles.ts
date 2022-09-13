@@ -211,7 +211,7 @@ export const ContentTools = styled.div`
   flex-direction: column;
 `
 
-export const ButtonUpdateList = styled.button`
+export const ButtonOption = styled.button`
   height: 2.5rem;
   background-color: ${({ theme }) => theme.colors.focus};
   border: none;
