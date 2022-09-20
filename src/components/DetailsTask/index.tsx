@@ -93,14 +93,15 @@ export const DetailsTask = () => {
         <RiCloseFill />
       </S.ButtonClose>
 
-      <S.ButtonTools onMouseMove={handleShowDropdown} onMouseOut={handleHideDropdown}>
-        <FaTools />
-      </S.ButtonTools>
+      {lists.length > 1 && (
+        <S.ButtonTools onMouseMove={handleShowDropdown} onMouseOut={handleHideDropdown}>
+          <FaTools />
+        </S.ButtonTools>
+      )}
 
       <S.ContainerTools showDropdown={showDropdown} onMouseMove={handleShowDropdown} onMouseOut={handleHideDropdown}>
         <S.ContentTools>
-          {lists.length > 1 && <S.ButtonOption onClick={handleOpenModal}>Update the list</S.ButtonOption>}
-          <S.ButtonOption>Edit the task</S.ButtonOption>
+          <S.ButtonOption onClick={handleOpenModal}>Update the list</S.ButtonOption>
         </S.ContentTools>
       </S.ContainerTools>
     </S.Container>
