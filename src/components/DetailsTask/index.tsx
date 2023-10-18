@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AiOutlineCalendar, AiOutlineDelete } from 'react-icons/ai'
-import { FaTools } from 'react-icons/fa'
 import { RiCloseFill } from 'react-icons/ri'
+import { TbExchange } from 'react-icons/tb'
 import { useToDo } from '../../context'
 import { customStorage } from '../../utils/customStorage'
 import { formatDate } from '../../utils/formatDate'
@@ -95,13 +95,13 @@ export const DetailsTask = () => {
 
       {lists.length > 1 && (
         <S.ButtonTools onMouseMove={handleShowDropdown} onMouseOut={handleHideDropdown}>
-          <FaTools />
+          <TbExchange />
         </S.ButtonTools>
       )}
 
       <S.ContainerTools showDropdown={showDropdown} onMouseMove={handleShowDropdown} onMouseOut={handleHideDropdown}>
         <S.ContentTools>
-          <S.ButtonOption onClick={handleOpenModal}>Update the list</S.ButtonOption>
+          <S.ButtonOption onClick={handleOpenModal}>Change list</S.ButtonOption>
         </S.ContentTools>
       </S.ContainerTools>
     </S.Container>
