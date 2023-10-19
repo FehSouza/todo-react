@@ -36,6 +36,6 @@ yarn start
 
 &nbsp;
 
-## Link Netlify:
+## Link Netlify
 
 https://to-do-feh.netlify.app/
